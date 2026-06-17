@@ -122,6 +122,6 @@ Create a Property Intelligence Platform that ingests the Oracle-collected datase
 This milestone is considered complete only when the full Oracle dataset is loaded, reconciled into the Elephant Lexicon model, indexed within the RAG layer, exposed through the exploration UI, and demonstrated through the required inquiry workflows above.
 
 ## Reference
-[Soofi XYZ Team Kit](https://github.com/soofi-xyz/soofi-xyz-team-kit)
-[elephant query db usage skill - Soofi XYZ Team Kit](https://github.com/soofi-xyz/soofi-xyz-team-kit/pull/54)
-[Elephant Oracle Skills](https://github.com/elephant-xyz/skills)
+- [Soofi XYZ Team Kit](https://github.com/soofi-xyz/soofi-xyz-team-kit)
+- [elephant query db usage skill - Soofi XYZ Team Kit](https://github.com/soofi-xyz/soofi-xyz-team-kit/pull/54)
+- [Elephant Oracle Skills](https://github.com/elephant-xyz/skills)
