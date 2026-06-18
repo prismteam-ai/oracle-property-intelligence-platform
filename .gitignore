@@ -1,0 +1,14 @@
+node_modules
+.next
+.env.local
+.env*.local
+*.log
+npm-debug.log*
+.DS_Store
+/data/generated
+next-env.d.ts
+.turbo
+dist
+
+tsconfig.tsbuildinfo
+/embeddings/.cache

@@ -1,0 +1,53 @@
+# One-command stack: Postgres+pgvector, local embeddings service, seeder, and web app.
+#   docker compose up --build
+# Then open http://localhost:8080
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: oracle
+      POSTGRES_PASSWORD: oracle
+      POSTGRES_DB: oracle
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U oracle -d oracle"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  embeddings:
+    build: ./embeddings
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8900/health').status==200 else 1)\""]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  seeder:
+    build:
+      context: .
+      target: seeder
+    environment:
+      DATABASE_URL: postgres://oracle:oracle@db:5432/oracle
+      EMBEDDINGS_URL: http://embeddings:8900
+    depends_on:
+      db: { condition: service_healthy }
+      embeddings: { condition: service_healthy }
+    restart: "no"
+
+  web:
+    build:
+      context: .
+      target: runner
+    environment:
+      DATABASE_URL: postgres://oracle:oracle@db:5432/oracle
+      EMBEDDINGS_URL: http://embeddings:8900
+    ports:
+      - "8080:3000"
+    depends_on:
+      seeder: { condition: service_completed_successfully }
+    restart: unless-stopped
+
+volumes:
+  pgdata:
