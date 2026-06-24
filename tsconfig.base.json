@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "allowJs": true,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@oracle-command-center/domain": ["packages/domain/src/index.ts"],
+      "@oracle-command-center/evidence-ledger": ["packages/evidence-ledger/src/index.ts"],
+      "@oracle-command-center/fixtures": ["packages/fixtures/src/index.ts"],
+      "@oracle-command-center/retrieval": ["packages/retrieval/src/index.ts"],
+      "@oracle-command-center/rag": ["packages/rag/src/index.ts"],
+      "@oracle-command-center/oracle-data-source": ["packages/oracle-data-source/src/index.ts"],
+      "@oracle-command-center/team-kit-source": ["packages/team-kit-source/src/index.ts"],
+      "@oracle-command-center/agent-registry": ["packages/agent-registry/src/index.ts"],
+      "@oracle-command-center/api-client": ["packages/api-client/src/index.ts"],
+      "@oracle-command-center/api": ["apps/api/src/router.ts"]
+    }
+  }
+}
