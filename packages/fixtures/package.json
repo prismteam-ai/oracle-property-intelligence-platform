@@ -1,0 +1,20 @@
+{
+  "name": "@oracle-command-center/fixtures",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit --pretty false"
+  },
+  "dependencies": {
+    "@oracle-command-center/domain": "workspace:*",
+    "@oracle-command-center/team-kit-source": "workspace:*"
+  }
+}

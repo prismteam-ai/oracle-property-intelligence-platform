@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:#0a0d11;font-family:'Space Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:#222c38;border-radius:8px;border:2px solid #0a0d11}
+  ::-webkit-scrollbar-thumb:hover{background:#2f3d4c}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::selection{background:rgba(70,213,196,0.30);color:#fff}
+  input,textarea,button,select{font-family:inherit;color:inherit}
+  input:focus,textarea:focus,select:focus{outline:none}
+  @keyframes orpulse{0%,100%{opacity:.45}50%{opacity:1}}
+  @keyframes orscan{0%{transform:translateY(-100%)}100%{transform:translateY(2200%)}}
+</style>
+<script src="oracle-data.js"></script>
+</helmet>
+
+<div style="height:100vh;display:flex;flex-direction:column;background:radial-gradient(1200px 600px at 80% -10%,rgba(47,155,214,0.10),transparent 60%),radial-gradient(900px 500px at -5% 110%,rgba(70,213,196,0.07),transparent 55%),#0a0d11;color:#e6edf3;font-size:14px;overflow:hidden;">
+
+  <!-- ===================== TOP BAR ===================== -->
+  <div style="height:58px;flex:0 0 auto;display:flex;align-items:center;gap:18px;padding:0 22px;border-bottom:1px solid #1b232c;background:#0c1015;z-index:5;">
+    <div style="display:flex;align-items:center;gap:11px;">
+      <div style="width:31px;height:31px;border-radius:8px;background:linear-gradient(140deg,#46d5c4,#2f7fd6);display:flex;align-items:center;justify-content:center;color:#042421;font-weight:700;font-size:17px;font-family:'IBM Plex Mono',monospace;box-shadow:0 2px 14px rgba(70,213,196,.35);">◇</div>
+      <div>
+        <div style="font-weight:600;font-size:15px;letter-spacing:.01em;line-height:1.15;">Oracle <span style="color:#5fe0d0;">Command&nbsp;Center</span></div>
+        <div style="font-size:10px;color:#5f6b78;font-family:'IBM Plex Mono',monospace;letter-spacing:.13em;">AGENT&nbsp;NETWORK · PROPERTY&nbsp;INTELLIGENCE</div>
+      </div>
+    </div>
+    <div style="flex:1"></div>
+    <div style="display:flex;gap:7px;">
+      <sc-for list="{{ corpusChips }}" as="c" hint-placeholder-count="4">
+        <div style="display:flex;align-items:baseline;gap:6px;padding:5px 10px;border:1px solid #1e2630;border-radius:7px;background:#0e1319;font-family:'IBM Plex Mono',monospace;">
+          <span style="font-size:12.5px;font-weight:600;color:#cdd8e2;">{{ c.v }}</span>
+          <span style="font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#5f6b78;">{{ c.k }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="{{ oracle.badgeStyle }}">
+      <span style="{{ oracle.dotStyle }}"></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;">oracle</span>
+      <span style="opacity:.55;">·</span>
+      <span style="font-size:11.5px;font-weight:600;">{{ oracle.status }}</span>
+    </div>
+  </div>
+
+  <div style="flex:1;display:flex;min-height:0;">
+
+    <!-- ===================== NAV RAIL ===================== -->
+    <div style="width:228px;flex:0 0 auto;border-right:1px solid #1b232c;background:#0c1015;display:flex;flex-direction:column;">
+      <div style="padding:16px 16px 9px;font-size:10px;letter-spacing:.16em;color:#4d5a67;font-weight:600;font-family:'IBM Plex Mono',monospace;">WORKSPACE MODES</div>
+      <div style="padding:0 10px;display:flex;flex-direction:column;gap:3px;">
+        <sc-for list="{{ modeTabs }}" as="t" hint-placeholder-count="4">
+          <div onClick="{{ t.onClick }}" style="{{ t.style }}">
+            <span style="{{ t.iconStyle }}">{{ t.icon }}</span>
+            <div style="min-width:0;">
+              <div style="font-weight:600;font-size:13.5px;">{{ t.label }}</div>
+              <div style="font-size:10.5px;color:#6b7783;line-height:1.25;margin-top:1px;">{{ t.desc }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="flex:1"></div>
+      <div style="margin:12px;padding:13px;border:1px solid #1b232c;border-radius:10px;background:#0e1319;">
+        <div style="font-size:10px;letter-spacing:.14em;color:#4d5a67;font-weight:600;font-family:'IBM Plex Mono',monospace;">DATA PLANE</div>
+        <div style="margin-top:9px;display:flex;align-items:center;gap:8px;">
+          <span style="width:7px;height:7px;border-radius:50%;background:#5fd08a;box-shadow:0 0 8px #5fd08a;animation:orpulse 2.4s ease-in-out infinite;"></span>
+          <span style="font-size:12px;font-weight:600;">Fixture corpus</span>
+        </div>
+        <div style="font-size:10.5px;color:#6b7783;margin-top:6px;line-height:1.5;">Deterministic Lee County records. Live adapters ready: <span style="color:#93a1ad;font-family:'IBM Plex Mono',monospace;">Elephant Query DB · Bedrock · OpenSearch</span>.</div>
+        <div style="margin-top:9px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5f6b78;">refreshed {{ corpus.lastRefresh }}</div>
+      </div>
+    </div>
+
+    <!-- ===================== MAIN ===================== -->
+    <div style="flex:1;display:flex;flex-direction:column;min-width:0;">
+
+      <!-- ============ INTELLIGENCE ============ -->
+      <sc-if value="{{ isIntelligence }}" hint-placeholder-val="{{ true }}">
+      <div style="flex:1;display:flex;flex-direction:column;min-height:0;">
+
+        <!-- provenance banner -->
+        <div style="{{ banner.style }}">
+          <span style="{{ banner.dotStyle }}"></span>
+          <span style="font-size:12.5px;line-height:1.4;">{{ banner.text }}</span>
+          <div style="flex:1"></div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b7783;">{{ banner.note }}</span>
+        </div>
+
+        <div style="flex:1;display:flex;min-height:0;">
+
+          <!-- query rail -->
+          <div style="width:344px;flex:0 0 auto;border-right:1px solid #1b232c;display:flex;flex-direction:column;background:#0b0f14;min-height:0;">
+            <div style="padding:16px 16px 12px;border-bottom:1px solid #161d25;">
+              <div style="font-size:10px;letter-spacing:.16em;color:#4d5a67;font-weight:600;font-family:'IBM Plex Mono',monospace;">RAG QUERY CONSOLE</div>
+              <div style="margin-top:11px;display:flex;gap:8px;">
+                <div style="flex:1;display:flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid #283340;border-radius:9px;background:#0e1319;">
+                  <span style="color:#5fe0d0;font-family:'IBM Plex Mono',monospace;font-size:13px;">›</span>
+                  <input value="{{ query }}" onInput="{{ onQueryInput }}" onKeyDown="{{ onQueryKey }}" placeholder="Ask the knowledge layer…" style="flex:1;border:none;background:transparent;color:#e6edf3;font-size:13px;" />
+                </div>
+                <div onClick="{{ runFreeText }}" style="display:flex;align-items:center;padding:0 15px;border-radius:9px;background:#46d5c4;color:#042421;font-weight:600;font-size:13px;cursor:pointer;">Run</div>
+              </div>
+              <div style="display:flex;gap:6px;margin-top:10px;">
+                <sc-for list="{{ scopeTabs }}" as="s" hint-placeholder-count="5">
+                  <div onClick="{{ s.onClick }}" style="{{ s.style }}">{{ s.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="flex:1;overflow-y:auto;padding:6px 14px 18px;min-height:0;">
+              <sc-for list="{{ inquiryGroups }}" as="g" hint-placeholder-count="5">
+                <div style="margin-top:14px;">
+                  <div style="font-size:10px;letter-spacing:.13em;color:#56636f;font-weight:600;font-family:'IBM Plex Mono',monospace;margin-bottom:8px;">{{ g.title }}</div>
+                  <div style="display:flex;flex-direction:column;gap:5px;">
+                    <sc-for list="{{ g.items }}" as="q" hint-placeholder-count="4">
+                      <div onClick="{{ q.onClick }}" style="{{ q.style }}">
+                        <span style="{{ q.dotStyle }}"></span>
+                        <span style="line-height:1.35;">{{ q.label }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <!-- results column -->
+          <div style="flex:1;overflow-y:auto;border-right:1px solid #1b232c;min-width:0;min-height:0;">
+            <sc-if value="{{ res.active }}" hint-placeholder-val="{{ true }}">
+              <div style="padding:18px 20px;border-bottom:1px solid #161d25;position:sticky;top:0;background:#0a0d11;z-index:2;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span style="font-size:10px;letter-spacing:.14em;color:#4d5a67;font-weight:600;font-family:'IBM Plex Mono',monospace;">RESULT SET</span>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5fe0d0;background:rgba(70,213,196,.12);border:1px solid rgba(70,213,196,.32);padding:2px 8px;border-radius:20px;">{{ res.count }} records</span>
+                </div>
+                <div style="margin-top:8px;font-size:16px;font-weight:600;line-height:1.3;">{{ res.headerLabel }}</div>
+                <div style="margin-top:5px;font-size:12px;color:#7e8b97;line-height:1.45;">{{ res.note }}</div>
+              </div>
+
+              <!-- NL answer -->
+              <sc-if value="{{ res.hasAnswer }}" hint-placeholder-val="{{ false }}">
+                <div style="margin:16px 20px 4px;padding:15px 16px;border:1px solid #243a3c;border-radius:11px;background:linear-gradient(180deg,rgba(70,213,196,.06),rgba(70,213,196,.02));">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:#5fe0d0;">RAG SYNTHESIS</span>
+                    <span style="font-size:10px;color:#5f6b78;font-family:'IBM Plex Mono',monospace;">via certified agent · oracle</span>
+                  </div>
+                  <div style="font-size:13.5px;line-height:1.55;color:#cdd8e2;">{{ res.answer }}</div>
+                </div>
+              </sc-if>
+
+              <!-- graph branch -->
+              <sc-if value="{{ res.isGraph }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:18px 20px;">
+                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+                    <span style="font-size:11px;color:#7e8b97;">Focus property</span>
+                    <select onChange="{{ onGraphSelect }}" value="{{ graphProp }}" style="flex:1;padding:8px 10px;border:1px solid #283340;border-radius:8px;background:#0e1319;font-size:12.5px;font-family:'IBM Plex Mono',monospace;">
+                      <sc-for list="{{ graphOptions }}" as="o" hint-placeholder-count="6">
+                        <option value="{{ o.id }}">{{ o.label }}</option>
+                      </sc-for>
+                    </select>
+                  </div>
+                  <div style="display:flex;justify-content:center;margin-bottom:6px;">
+                    <div style="text-align:center;padding:14px 20px;border:1.5px solid #46d5c4;border-radius:12px;background:rgba(70,213,196,.08);min-width:230px;box-shadow:0 0 26px rgba(70,213,196,.12);">
+                      <div style="font-size:10px;letter-spacing:.12em;color:#5fe0d0;font-family:'IBM Plex Mono',monospace;">PROPERTY</div>
+                      <div style="font-weight:600;font-size:15px;margin-top:4px;">{{ graph.center.title }}</div>
+                      <div style="font-size:11.5px;color:#93a1ad;margin-top:2px;">{{ graph.center.sub }}</div>
+                    </div>
+                  </div>
+                  <div style="height:22px;width:1px;background:#2f3d4c;margin:0 auto;"></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                    <sc-for list="{{ graph.clusters }}" as="cl" hint-placeholder-count="4">
+                      <div style="border:1px solid #1e2630;border-radius:11px;background:#101620;padding:12px 13px;">
+                        <div style="display:flex;align-items:center;gap:7px;margin-bottom:9px;">
+                          <span style="{{ cl.dotStyle }}"></span>
+                          <span style="font-size:10px;letter-spacing:.12em;color:#7e8b97;font-family:'IBM Plex Mono',monospace;font-weight:600;">{{ cl.title }}</span>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:6px;">
+                          <sc-for list="{{ cl.nodes }}" as="n" hint-placeholder-count="2">
+                            <div style="padding:7px 9px;border:1px solid #232d39;border-radius:8px;background:#0c1116;">
+                              <div style="font-size:12.5px;font-weight:500;line-height:1.2;">{{ n.name }}</div>
+                              <div style="font-size:10.5px;color:#6b7783;margin-top:2px;">{{ n.role }}</div>
+                            </div>
+                          </sc-for>
+                          <sc-if value="{{ cl.empty }}" hint-placeholder-val="{{ false }}">
+                            <div style="font-size:11px;color:#56636f;font-style:italic;">none linked</div>
+                          </sc-if>
+                        </div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+
+              <!-- cards -->
+              <div style="padding:14px 16px;display:flex;flex-direction:column;gap:9px;">
+                <sc-for list="{{ res.cards }}" as="c" hint-placeholder-count="5">
+                  <div onClick="{{ c.onClick }}" style="{{ c.style }}">
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                      <div style="min-width:0;flex:1;">
+                        <div style="font-weight:600;font-size:14px;line-height:1.25;">{{ c.title }}</div>
+                        <div style="font-size:12px;color:#8593a0;margin-top:3px;font-family:'IBM Plex Mono',monospace;">{{ c.subtitle }}</div>
+                      </div>
+                      <div style="display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end;max-width:46%;">
+                        <sc-for list="{{ c.badges }}" as="b" hint-placeholder-count="2">
+                          <span style="font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:20px;white-space:nowrap;background:{{ b.bg }};color:{{ b.fg }};border:1px solid {{ b.bd }};">{{ b.label }}</span>
+                        </sc-for>
+                      </div>
+                    </div>
+                    <div style="display:flex;gap:16px;margin-top:11px;flex-wrap:wrap;">
+                      <sc-for list="{{ c.metas }}" as="m" hint-placeholder-count="3">
+                        <div>
+                          <div style="font-size:9.5px;letter-spacing:.08em;color:#56636f;text-transform:uppercase;">{{ m.k }}</div>
+                          <div style="font-size:12px;color:#bac6d1;font-family:'IBM Plex Mono',monospace;margin-top:1px;">{{ m.v }}</div>
+                        </div>
+                      </sc-for>
+                      <div style="flex:1"></div>
+                      <div style="align-self:flex-end;display:flex;align-items:center;gap:5px;font-size:10.5px;color:#5fe0d0;font-family:'IBM Plex Mono',monospace;">
+                        <span style="opacity:.7;">⛓</span>{{ c.cite }} cited
+                      </div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ res.empty }}" hint-placeholder-val="{{ false }}">
+              <div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;color:#56636f;">
+                <div style="font-size:34px;opacity:.5;font-family:'IBM Plex Mono',monospace;">◇</div>
+                <div style="margin-top:14px;font-size:14px;color:#7e8b97;font-weight:500;">Run a required inquiry or ask a question</div>
+                <div style="margin-top:6px;font-size:12px;max-width:300px;line-height:1.5;">Every result is reconciled into the Elephant Lexicon and returned with source provenance.</div>
+              </div>
+            </sc-if>
+          </div>
+
+          <!-- detail column -->
+          <div style="flex:1.05;overflow-y:auto;min-width:0;min-height:0;background:#0b0f14;">
+            <sc-if value="{{ hasDetail }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:20px 22px;">
+
+                <!-- header -->
+                <div style="display:flex;align-items:center;gap:9px;">
+                  <span style="{{ detail.kindStyle }}">{{ detail.kind }}</span>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5f6b78;">{{ detail.id }}</span>
+                </div>
+                <div style="font-size:21px;font-weight:600;margin-top:9px;line-height:1.2;">{{ detail.title }}</div>
+                <div style="font-size:13px;color:#8593a0;margin-top:4px;">{{ detail.subtitle }}</div>
+
+                <!-- signal badges -->
+                <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:13px;">
+                  <sc-for list="{{ detail.signals }}" as="s" hint-placeholder-count="2">
+                    <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;background:{{ s.bg }};color:{{ s.fg }};border:1px solid {{ s.bd }};">{{ s.label }}</span>
+                  </sc-for>
+                </div>
+
+                <!-- sections -->
+                <sc-for list="{{ detail.sections }}" as="sec" hint-placeholder-count="4">
+                  <div style="margin-top:20px;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+                      <span style="font-size:10px;letter-spacing:.14em;color:#5fe0d0;font-weight:600;font-family:'IBM Plex Mono',monospace;">{{ sec.title }}</span>
+                      <span style="flex:1;height:1px;background:#1b232c;"></span>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:7px;">
+                      <sc-for list="{{ sec.rows }}" as="r" hint-placeholder-count="2">
+                        <div style="display:flex;align-items:flex-start;gap:11px;padding:10px 12px;border:1px solid #1a222b;border-radius:9px;background:#0e1319;">
+                          <sc-if value="{{ r.hasTag }}" hint-placeholder-val="{{ false }}">
+                            <span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:6px;white-space:nowrap;background:{{ r.tagBg }};color:{{ r.tagFg }};border:1px solid {{ r.tagBd }};font-family:'IBM Plex Mono',monospace;margin-top:1px;">{{ r.tag }}</span>
+                          </sc-if>
+                          <div style="flex:1;min-width:0;">
+                            <div style="font-size:13px;font-weight:500;line-height:1.3;">{{ r.primary }}</div>
+                            <div style="font-size:11.5px;color:#7e8b97;margin-top:2px;line-height:1.4;">{{ r.secondary }}</div>
+                          </div>
+                          <div style="text-align:right;white-space:nowrap;">
+                            <div style="font-size:12.5px;color:#bac6d1;font-family:'IBM Plex Mono',monospace;">{{ r.value }}</div>
+                            <div style="font-size:10.5px;color:#5f6b78;margin-top:2px;">{{ r.meta }}</div>
+                          </div>
+                        </div>
+                      </sc-for>
+                      <sc-if value="{{ sec.empty }}" hint-placeholder-val="{{ false }}">
+                        <div style="font-size:12px;color:#56636f;font-style:italic;padding:4px 2px;">No records.</div>
+                      </sc-if>
+                    </div>
+                  </div>
+                </sc-for>
+
+                <!-- provenance -->
+                <div style="margin-top:22px;">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+                    <span style="font-size:10px;letter-spacing:.14em;color:#5fe0d0;font-weight:600;font-family:'IBM Plex Mono',monospace;">PROVENANCE &amp; CITATIONS</span>
+                    <span style="flex:1;height:1px;background:#1b232c;"></span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:6px;">
+                    <sc-for list="{{ detail.citations }}" as="ct" hint-placeholder-count="2">
+                      <div style="padding:10px 12px;border:1px solid #1a222b;border-radius:9px;background:#0c1116;">
+                        <div style="display:flex;align-items:center;gap:8px;">
+                          <span style="width:6px;height:6px;border-radius:50%;background:#5fe0d0;"></span>
+                          <span style="font-size:12.5px;font-weight:500;">{{ ct.system }}</span>
+                        </div>
+                        <div style="font-size:11px;color:#5fe0d0;font-family:'IBM Plex Mono',monospace;margin-top:5px;word-break:break-all;">{{ ct.url }}</div>
+                        <div style="display:flex;gap:16px;margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5f6b78;">
+                          <span>collected {{ ct.collected }}</span><span>refreshed {{ ct.refreshed }}</span>
+                        </div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ noDetail }}" hint-placeholder-val="{{ true }}">
+              <div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;color:#56636f;">
+                <div style="font-size:30px;opacity:.45;">⌖</div>
+                <div style="margin-top:12px;font-size:13px;color:#7e8b97;">Select a record to inspect</div>
+                <div style="margin-top:5px;font-size:11.5px;max-width:240px;line-height:1.5;">Ownership, permits, contractors, occupancy, and lineage appear here.</div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ REGISTRY ============ -->
+      <sc-if value="{{ isRegistry }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;display:flex;min-height:0;">
+        <div style="width:48%;flex:0 0 auto;border-right:1px solid #1b232c;overflow-y:auto;min-height:0;">
+          <div style="padding:20px 20px 14px;border-bottom:1px solid #161d25;position:sticky;top:0;background:#0a0d11;z-index:2;">
+            <div style="font-size:10px;letter-spacing:.16em;color:#4d5a67;font-weight:600;font-family:'IBM Plex Mono',monospace;">AGENT REGISTRY</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:9px;">
+              <div style="font-size:17px;font-weight:600;">Discovered agents</div>
+              <div style="display:flex;align-items:center;gap:7px;padding:6px 11px;border:1px solid #283340;border-radius:8px;background:#0e1319;font-size:11.5px;color:#7e8b97;font-family:'IBM Plex Mono',monospace;">
+                <span style="width:6px;height:6px;border-radius:50%;background:#5fd08a;"></span>scanned soofi-xyz-team-kit
+              </div>
+            </div>
+            <div style="margin-top:6px;font-size:12px;color:#7e8b97;line-height:1.45;">Parsed <span style="color:#cdd8e2;font-family:'IBM Plex Mono',monospace;">{{ discoveredCount }}</span> agents from <span style="color:#5fe0d0;font-family:'IBM Plex Mono',monospace;">agents/*.md</span> + <span style="color:#5fe0d0;font-family:'IBM Plex Mono',monospace;">skills/*/SKILL.md</span>. Promote, review, and certify.</div>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+            <sc-for list="{{ agentsRows }}" as="a" hint-placeholder-count="6">
+              <div onClick="{{ a.onClick }}" style="{{ a.rowStyle }}">
+                <div style="{{ a.avatarStyle }}">{{ a.initial }}</div>
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:14px;">{{ a.display }}</span>
+                    <span style="font-size:11px;color:#5f6b78;font-family:'IBM Plex Mono',monospace;">v{{ a.version }}</span>
+                    <sc-if value="{{ a.isOracle }}" hint-placeholder-val="{{ false }}">
+                      <span style="font-size:9.5px;font-weight:600;padding:1px 7px;border-radius:20px;background:rgba(70,213,196,.13);color:#5fe0d0;border:1px solid rgba(70,213,196,.34);font-family:'IBM Plex Mono',monospace;">THIS DEMO</span>
+                    </sc-if>
+                  </div>
+                  <div style="font-size:12px;color:#8593a0;margin-top:2px;">{{ a.role }}</div>
+                </div>
+                <span style="{{ a.pillStyle }}">{{ a.status }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="flex:1;overflow-y:auto;background:#0b0f14;min-height:0;">
+          <div style="padding:22px 24px;">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="{{ regDetail.avatarStyle }}">{{ regDetail.initial }}</div>
+              <div style="flex:1;min-width:0;">
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:21px;font-weight:600;">{{ regDetail.display }}</span>
+                  <span style="{{ regDetail.statusPill }}">{{ regDetail.status }}</span>
+                </div>
+                <div style="font-size:13px;color:#8593a0;margin-top:3px;">{{ regDetail.role }} · v{{ regDetail.version }}</div>
+              </div>
+            </div>
+            <div style="margin-top:9px;font-size:11.5px;color:#5f6b78;font-family:'IBM Plex Mono',monospace;">{{ regDetail.sourceLabel }}</div>
+
+            <div style="margin-top:20px;">
+              <div style="font-size:10px;letter-spacing:.14em;color:#5fe0d0;font-weight:600;font-family:'IBM Plex Mono',monospace;">CERTIFICATION LIFECYCLE</div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:11px;">
+                <sc-for list="{{ regLifecycle }}" as="l" hint-placeholder-count="8">
+                  <span style="{{ l.style }}">{{ l.label }}</span>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="margin-top:18px;padding:14px 16px;border:1px solid #1a222b;border-radius:11px;background:#0e1319;font-size:13px;line-height:1.55;color:#cdd8e2;">{{ regDetail.summary }}</div>
+
+            <div style="margin-top:18px;">
+              <div style="font-size:10px;letter-spacing:.14em;color:#5fe0d0;font-weight:600;font-family:'IBM Plex Mono',monospace;margin-bottom:11px;">REGISTERED METADATA</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <div style="padding:11px 13px;border:1px solid #1a222b;border-radius:10px;background:#0e1319;">
+                  <div style="font-size:9.5px;letter-spacing:.1em;color:#56636f;text-transform:uppercase;">Runtime</div>
+                  <div style="font-size:12.5px;color:#cdd8e2;margin-top:3px;font-family:'IBM Plex Mono',monospace;line-height:1.4;">{{ regDetail.runtime }}</div>
+                </div>
+                <div style="padding:11px 13px;border:1px solid #1a222b;border-radius:10px;background:#0e1319;">
+                  <div style="font-size:9.5px;letter-spacing:.1em;color:#56636f;text-transform:uppercase;">Docs</div>
+                  <div style="font-size:11px;color:#5fe0d0;margin-top:3px;font-family:'IBM Plex Mono',monospace;line-height:1.4;word-break:break-all;">{{ regDetail.docs }}</div>
+                </div>
+              </div>
+              <div style="margin-top:10px;padding:11px 13px;border:1px solid #1a222b;border-radius:10px;background:#0e1319;">
+                <div style="font-size:9.5px;letter-spacing:.1em;color:#56636f;text-transform:uppercase;">Invocation</div>
+                <div style="font-size:12px;color:#cdeee8;margin-top:4px;font-family:'IBM Plex Mono',monospace;">{{ regDetail.triggers }}</div>
+              </div>
+              <div style="display:flex;gap:10px;margin-top:10px;">
+                <div style="flex:1;padding:11px 13px;border:1px solid #1a222b;border-radius:10px;background:#0e1319;">
+                  <div style="font-size:9.5px;letter-spacing:.1em;color:#56636f;text-transform:uppercase;margin-bottom:7px;">Skills</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:5px;">
+                    <sc-for list="{{ regDetail.skills }}" as="sk" hint-placeholder-count="2">
+                      <span style="font-size:10.5px;padding:2px 8px;border-radius:6px;background:rgba(70,213,196,.1);color:#5fe0d0;border:1px solid rgba(70,213,196,.25);font-family:'IBM Plex Mono',monospace;">{{ sk }}</span>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="flex:1;padding:11px 13px;border:1px solid #1a222b;border-radius:10px;background:#0e1319;">
+                  <div style="font-size:9.5px;letter-spacing:.1em;color:#56636f;text-transform:uppercase;margin-bottom:7px;">Dependencies</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:5px;">
+                    <sc-for list="{{ regDetail.deps }}" as="dp" hint-placeholder-count="2">
+                      <span style="font-size:10.5px;padding:2px 8px;border-radius:6px;background:#161d25;color:#aab4c0;border:1px solid #232d39;font-family:'IBM Plex Mono',monospace;">{{ dp }}</span>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <sc-if value="{{ regDetail.isOracle }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top:18px;">
+                <div style="font-size:10px;letter-spacing:.14em;color:#5fe0d0;font-weight:600;font-family:'IBM Plex Mono',monospace;margin-bottom:11px;">REVIEWER WORKBENCH</div>
+                <div style="display:flex;gap:10px;">
+                  <div style="width:130px;flex:0 0 auto;padding:10px 12px;border:1px solid #283340;border-radius:10px;background:#0e1319;">
+                    <div style="font-size:9.5px;letter-spacing:.1em;color:#56636f;text-transform:uppercase;">Version</div>
+                    <input value="{{ draftVersion }}" onInput="{{ onVersion }}" style="width:100%;border:none;background:transparent;color:#cdeee8;font-size:13px;font-family:'IBM Plex Mono',monospace;margin-top:3px;" />
+                  </div>
+                  <div style="flex:1;padding:10px 12px;border:1px solid #283340;border-radius:10px;background:#0e1319;">
+                    <div style="font-size:9.5px;letter-spacing:.1em;color:#56636f;text-transform:uppercase;">Review notes</div>
+                    <input value="{{ draftNotes }}" onInput="{{ onNotes }}" placeholder="Acceptance-criteria coverage, citations verified…" style="width:100%;border:none;background:transparent;color:#cdd8e2;font-size:12.5px;margin-top:3px;" />
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;">
+              <sc-for list="{{ regDetail.actions }}" as="act" hint-placeholder-count="2">
+                <div onClick="{{ act.onClick }}" style="{{ act.style }}">{{ act.label }}</div>
+              </sc-for>
+            </div>
+
+            <div style="margin-top:16px;padding:12px 14px;border:1px solid #1a222b;border-radius:10px;background:#0c1116;display:flex;gap:24px;">
+              <div><div style="font-size:9.5px;letter-spacing:.1em;color:#56636f;text-transform:uppercase;">Certified</div><div style="font-size:12.5px;color:#cdd8e2;font-family:'IBM Plex Mono',monospace;margin-top:2px;">{{ regDetail.certifiedDate }}</div></div>
+              <div><div style="font-size:9.5px;letter-spacing:.1em;color:#56636f;text-transform:uppercase;">Reviewer</div><div style="font-size:12.5px;color:#cdd8e2;font-family:'IBM Plex Mono',monospace;margin-top:2px;">{{ regDetail.reviewer }}</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ MARKETPLACE ============ -->
+      <sc-if value="{{ isMarketplace }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;overflow-y:auto;min-height:0;">
+        <div style="padding:24px 28px 8px;">
+          <div style="font-size:10px;letter-spacing:.16em;color:#4d5a67;font-weight:600;font-family:'IBM Plex Mono',monospace;">CERTIFIED MARKETPLACE</div>
+          <div style="font-size:20px;font-weight:600;margin-top:8px;">Publishable agents</div>
+          <div style="font-size:12.5px;color:#7e8b97;margin-top:5px;line-height:1.5;">Only <span style="color:#7fe0a3;">Certified</span> agents are listed. <span style="color:#cdd8e2;font-family:'IBM Plex Mono',monospace;">{{ hiddenCount }}</span> uncertified agents are hidden by the governance gate.</div>
+        </div>
+
+        <sc-if value="{{ oraclePending }}" hint-placeholder-val="{{ false }}">
+          <div style="margin:14px 28px 0;padding:14px 16px;border:1px solid rgba(232,183,90,.28);border-radius:12px;background:rgba(232,183,90,.06);display:flex;align-items:center;gap:13px;">
+            <span style="width:9px;height:9px;border-radius:50%;background:#e8b75a;box-shadow:0 0 8px #e8b75a;flex:0 0 auto;"></span>
+            <div style="flex:1;font-size:13px;color:#e6dcc0;line-height:1.45;"><span style="font-family:'IBM Plex Mono',monospace;font-weight:600;">oracle</span> is not yet certified — Oracle intelligence cannot publish until it passes review.</div>
+            <div onClick="{{ goRegistry }}" style="padding:8px 14px;border-radius:9px;background:#e8b75a;color:#2a2410;font-weight:600;font-size:12.5px;cursor:pointer;white-space:nowrap;">Certify in Registry →</div>
+          </div>
+        </sc-if>
+
+        <div style="padding:18px 28px 30px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
+          <sc-for list="{{ certifiedAgents }}" as="a" hint-placeholder-count="4">
+            <div style="border:1px solid #1c2530;border-radius:14px;background:#101620;padding:18px;display:flex;flex-direction:column;">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="{{ a.avatarStyle }}">{{ a.initial }}</div>
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:600;">{{ a.display }}</span>
+                    <span style="font-size:10.5px;color:#5f6b78;font-family:'IBM Plex Mono',monospace;">v{{ a.version }}</span>
+                  </div>
+                  <div style="font-size:12px;color:#8593a0;margin-top:2px;">{{ a.role }}</div>
+                </div>
+                <span style="font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:20px;background:rgba(95,208,138,.13);color:#7fe0a3;border:1px solid rgba(95,208,138,.34);white-space:nowrap;">✓ Certified</span>
+              </div>
+              <div style="font-size:12.5px;color:#aab4c0;line-height:1.5;margin-top:13px;flex:1;">{{ a.summary }}</div>
+              <div style="margin-top:14px;padding:11px 13px;border:1px solid #1a222b;border-radius:10px;background:#0c1116;">
+                <div style="font-size:9.5px;letter-spacing:.1em;color:#56636f;text-transform:uppercase;">Usage</div>
+                <div style="font-size:12px;color:#cdeee8;margin-top:5px;font-family:'IBM Plex Mono',monospace;">{{ a.triggers }}</div>
+                <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;">
+                  <sc-for list="{{ a.skills }}" as="sk" hint-placeholder-count="2">
+                    <span style="font-size:10px;padding:2px 7px;border-radius:6px;background:rgba(70,213,196,.1);color:#5fe0d0;border:1px solid rgba(70,213,196,.24);font-family:'IBM Plex Mono',monospace;">{{ sk }}</span>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-top:13px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#5f6b78;">
+                <span>certified {{ a.certifiedDate }}</span><span>{{ a.runtime }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ EVIDENCE ============ -->
+      <sc-if value="{{ isEvidence }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;display:flex;min-height:0;">
+        <div style="width:52%;flex:0 0 auto;border-right:1px solid #1b232c;overflow-y:auto;min-height:0;">
+          <div style="padding:20px 22px 14px;border-bottom:1px solid #161d25;position:sticky;top:0;background:#0a0d11;z-index:2;">
+            <div style="font-size:10px;letter-spacing:.16em;color:#4d5a67;font-weight:600;font-family:'IBM Plex Mono',monospace;">EVIDENCE LEDGER</div>
+            <div style="font-size:17px;font-weight:600;margin-top:8px;">Query provenance</div>
+            <div style="font-size:12px;color:#7e8b97;margin-top:5px;line-height:1.45;">Every run records its query, result, cited sources, the responsible agent, and the certification state at execution time.</div>
+          </div>
+          <sc-if value="{{ evEmpty }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:50px 30px;text-align:center;color:#56636f;">
+              <div style="font-size:30px;opacity:.45;font-family:'IBM Plex Mono',monospace;">⛓</div>
+              <div style="margin-top:12px;font-size:13px;color:#7e8b97;">No runs recorded yet</div>
+              <div style="margin-top:5px;font-size:11.5px;line-height:1.5;">Run inquiries in <span style="color:#5fe0d0;">Intelligence</span> to populate the ledger.</div>
+            </div>
+          </sc-if>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:9px;">
+            <sc-for list="{{ evRuns }}" as="r" hint-placeholder-count="3">
+              <div onClick="{{ r.onClick }}" style="{{ r.rowStyle }}">
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                  <div style="flex:1;min-width:0;font-size:13.5px;font-weight:600;line-height:1.35;">{{ r.query }}</div>
+                  <span style="{{ r.certPill }}">{{ r.cert }}</span>
+                </div>
+                <div style="display:flex;gap:16px;margin-top:9px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#6b7783;flex-wrap:wrap;">
+                  <span style="color:#93a1ad;">{{ r.ts }}</span>
+                  <span><span style="color:#5fe0d0;">{{ r.count }}</span> records</span>
+                  <span>agent · oracle</span>
+                </div>
+                <div style="margin-top:7px;font-size:11px;color:#7e8b97;line-height:1.4;">sources: {{ r.sources }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="flex:1;overflow-y:auto;background:#0b0f14;min-height:0;">
+          <sc-if value="{{ evDetail }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:22px 24px;">
+              <div style="font-size:10px;letter-spacing:.14em;color:#4d5a67;font-weight:600;font-family:'IBM Plex Mono',monospace;">EVIDENCE RECORD</div>
+              <div style="font-size:18px;font-weight:600;margin-top:9px;line-height:1.3;">{{ evDetail.query }}</div>
+              <div style="display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap;">
+                <span style="{{ evDetail.certPill }}">{{ evDetail.cert }}</span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#93a1ad;">{{ evDetail.count }} records</span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5f6b78;">· responsible agent oracle</span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5f6b78;">· {{ evDetail.ts }}</span>
+              </div>
+
+              <sc-if value="{{ evDetail.provisional }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:14px;padding:11px 14px;border:1px solid rgba(232,183,90,.28);border-radius:10px;background:rgba(232,183,90,.06);font-size:12px;color:#e6dcc0;line-height:1.45;">⚠ Produced while <span style="font-family:'IBM Plex Mono',monospace;">oracle</span> was uncertified — flagged provisional and not publishable to the marketplace.</div>
+              </sc-if>
+
+              <div style="margin-top:16px;padding:14px 16px;border:1px solid #1a222b;border-radius:11px;background:#0e1319;font-size:13px;line-height:1.55;color:#cdd8e2;">{{ evDetail.summary }}</div>
+
+              <div style="margin-top:20px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:11px;">
+                  <span style="font-size:10px;letter-spacing:.14em;color:#5fe0d0;font-weight:600;font-family:'IBM Plex Mono',monospace;">CITED SOURCES</span>
+                  <span style="flex:1;height:1px;background:#1b232c;"></span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <sc-for list="{{ evDetail.citations }}" as="ct" hint-placeholder-count="3">
+                    <div style="padding:11px 13px;border:1px solid #1a222b;border-radius:9px;background:#0c1116;">
+                      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+                        <div style="display:flex;align-items:center;gap:8px;min-width:0;">
+                          <span style="width:6px;height:6px;border-radius:50%;background:#5fe0d0;flex:0 0 auto;"></span>
+                          <span style="font-size:12.5px;font-weight:500;">{{ ct.system }}</span>
+                        </div>
+                        <span style="font-size:10.5px;color:#6b7783;font-family:'IBM Plex Mono',monospace;white-space:nowrap;">{{ ct.entity }}</span>
+                      </div>
+                      <div style="font-size:11px;color:#5fe0d0;font-family:'IBM Plex Mono',monospace;margin-top:5px;word-break:break-all;">{{ ct.url }}</div>
+                      <div style="display:flex;gap:16px;margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5f6b78;">
+                        <span>collected {{ ct.collected }}</span><span>refreshed {{ ct.refreshed }}</span>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+      </sc-if>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    mode: 'intelligence', scope: 'all', query: '',
+    activeInquiry: null, res: null, selType: null, selId: null,
+    graphProp: 'p10',
+    statuses: null, certDates: {}, reviewer: 'michael.gill',
+    regSel: 'oracle', draftVersion: '1.0.0', draftNotes: '',
+    evRuns: null, evSel: null, tick: 0
+  };
+
+  get D() {
+    const e = { contractors: [], owners: [], businesses: [], tenants: [], properties: [], agents: [], inquiries: [], turnover: {}, corpus: {} };
+    return (typeof window !== 'undefined' && window.ORACLE_DATA) ? window.ORACLE_DATA : e;
+  }
+
+  componentDidMount() {
+    if (window.ORACLE_DATA && !this._seeded) {
+      this._seeded = true;
+      const statuses = {};
+      this.D.agents.forEach(a => { statuses[a.id] = a.id === 'oracle' ? 'Discovered' : a.status; });
+      const certDates = {};
+      this.D.agents.forEach(a => { if (a.certifiedDate) certDates[a.id] = a.certifiedDate; });
+      const seedRuns = [];
+      this.setState({ statuses, certDates, evRuns: seedRuns, tick: 1 });
+    } else {
+      this.setState(s => ({ tick: s.tick + 1 }));
+    }
+  }
+
+  // ---------- tones ----------
+  T(name) {
+    const m = {
+      green:  { bg: 'rgba(95,208,138,0.13)', fg: '#7fe0a3', bd: 'rgba(95,208,138,0.34)' },
+      amber:  { bg: 'rgba(232,183,90,0.13)', fg: '#edc775', bd: 'rgba(232,183,90,0.34)' },
+      red:    { bg: 'rgba(242,118,107,0.13)', fg: '#f59083', bd: 'rgba(242,118,107,0.38)' },
+      blue:   { bg: 'rgba(106,169,240,0.13)', fg: '#8fbdf5', bd: 'rgba(106,169,240,0.34)' },
+      gray:   { bg: 'rgba(154,167,180,0.11)', fg: '#aab4c0', bd: 'rgba(154,167,180,0.26)' },
+      accent: { bg: 'rgba(70,213,196,0.13)', fg: '#5fe0d0', bd: 'rgba(70,213,196,0.36)' }
+    };
+    return m[name] || m.gray;
+  }
+  statusTone(s) {
+    const m = { 'Discovered': 'gray', 'Registered': 'blue', 'In Review': 'amber', 'Changes Requested': 'amber', 'Certified': 'green', 'Rejected': 'red', 'Deprecated': 'gray', 'Suspended': 'red' };
+    return this.T(m[s] || 'gray');
+  }
+  bbbTone(r) {
+    if (['A+', 'A', 'A-', 'B+', 'B'].includes(r)) return this.T(r.startsWith('A') ? 'green' : 'blue');
+    if (r === 'C') return this.T('amber');
+    if (['D', 'F'].includes(r)) return this.T('red');
+    return this.T('gray');
+  }
+  permTone(s) { return ['Open', 'Active', 'Issued'].includes(s) ? this.T('accent') : (s === 'Expired' ? this.T('amber') : this.T('gray')); }
+  money(n) { return '$' + Number(n).toLocaleString('en-US'); }
+  isOpen(s) { return ['Open', 'Active', 'Issued'].includes(s); }
+
+  // ---------- resolvers ----------
+  prop(id) { return this.D.properties.find(p => p.id === id); }
+  contractor(id) { return this.D.contractors.find(c => c.id === id); }
+  business(id) { return this.D.businesses.find(b => b.id === id); }
+  owner(id) { return this.D.owners.find(o => o.id === id); }
+  tenant(id) { return this.D.tenants.find(t => t.id === id); }
+  getStatus(id) { return (this.state.statuses && this.state.statuses[id]) || 'Discovered'; }
+  riskyIds() { const s = new Set(); this.D.contractors.forEach(c => { if (['D', 'F'].includes(c.bbb) || c.complaints.length) s.add(c.id); }); return s; }
+
+  // ---------- card builders ----------
+  cardProp(p) {
+    const open = p.permits.filter(x => this.isOpen(x.status));
+    const major = p.permits.filter(x => x.major);
+    const badges = [];
+    if (open.length) badges.push(Object.assign({ label: open.length + ' open' }, this.T('accent')));
+    if (major.length) badges.push(Object.assign({ label: 'major reno' }, this.T('amber')));
+    badges.push(Object.assign({ label: p.class }, this.T('gray')));
+    return {
+      key: p.id, type: 'property', title: p.address,
+      subtitle: p.city + ' · ' + p.neighborhood,
+      badges,
+      metas: [{ k: 'Parcel', v: p.parcel }, { k: 'Owner', v: this.owner(p.owner).name }, { k: 'Permits', v: String(p.permits.length) }],
+      cite: p.src.length, onClick: () => this.select('property', p.id),
+      style: this.cardStyle('property', p.id)
+    };
+  }
+  cardContractor(c) {
+    const badges = [Object.assign({ label: 'BBB ' + c.bbb }, this.bbbTone(c.bbb))];
+    if (c.complaints.length) badges.push(Object.assign({ label: c.complaints.length + ' complaints' }, this.T('red')));
+    return {
+      key: c.id, type: 'contractor', title: c.name,
+      subtitle: c.trades.join(' / ') + ' · ' + c.projects + ' projects',
+      badges,
+      metas: [{ k: 'License', v: c.license }, { k: 'Review', v: c.review + ' / 5' }, { k: 'County', v: c.county }],
+      cite: c.src.length, onClick: () => this.select('contractor', c.id),
+      style: this.cardStyle('contractor', c.id)
+    };
+  }
+  cardBusiness(b) {
+    const badges = [];
+    if (b.locations.length > 1) badges.push(Object.assign({ label: b.locations.length + ' locations' }, this.T('accent')));
+    badges.push(Object.assign({ label: b.status }, b.status === 'Active' ? this.T('green') : this.T('gray')));
+    return {
+      key: b.id, type: 'business', title: b.name,
+      subtitle: b.btype + ' · reg ' + b.registered,
+      badges,
+      metas: [{ k: 'Sunbiz', v: b.sunbiz }, { k: 'Owner', v: b.owner }, { k: 'Sites', v: String(b.locations.length) }],
+      cite: b.src.length, onClick: () => this.select('business', b.id),
+      style: this.cardStyle('business', b.id)
+    };
+  }
+  cardOwner(o) {
+    return {
+      key: o.id, type: 'owner', title: o.name,
+      subtitle: o.type + ' · owner since ' + o.since,
+      badges: [Object.assign({ label: o.props.length + ' properties' }, this.T('accent'))],
+      metas: [{ k: 'Type', v: o.type }, { k: 'Portfolio', v: o.props.length + ' parcels' }],
+      cite: o.src.length, onClick: () => this.select('owner', o.id),
+      style: this.cardStyle('owner', o.id)
+    };
+  }
+  cardTenant(t) {
+    return {
+      key: t.id, type: 'tenant', title: t.name,
+      subtitle: t.ttype + ' tenant',
+      badges: [Object.assign({ label: t.locations.length + ' locations' }, this.T('accent'))],
+      metas: [{ k: 'Locations', v: String(t.locations.length) }, { k: 'Businesses', v: String(t.businesses.length) }],
+      cite: t.src.length, onClick: () => this.select('tenant', t.id),
+      style: this.cardStyle('tenant', t.id)
+    };
+  }
+  cardNeighborhood(n) {
+    return {
+      key: n.name, type: 'neighborhood', title: n.name,
+      subtitle: n.city,
+      badges: [Object.assign({ label: n.tag }, this.T(n.tone))],
+      metas: [{ k: 'Permits', v: String(n.permits) }, { k: 'Major reno', v: String(n.major) }, { k: 'Recent', v: n.recent + ' / 60d' }],
+      cite: n.cite, onClick: () => {},
+      style: this.cardStyle('neighborhood', n.name)
+    };
+  }
+  cardProject(p, pm, c) {
+    return {
+      key: pm.id, type: 'project', title: pm.scope,
+      subtitle: pm.type + ' · ' + c.name,
+      badges: [Object.assign({ label: pm.status }, this.permTone(pm.status)), Object.assign({ label: 'risk contractor' }, this.T('red'))],
+      metas: [{ k: 'Property', v: p.address }, { k: 'Value', v: this.money(pm.value) }, { k: 'Filed', v: pm.filed }],
+      cite: p.src.length, onClick: () => this.select('property', p.id),
+      style: this.cardStyle('project', pm.id)
+    };
+  }
+  cardStyle(type, id) {
+    const sel = this.state.selType === type && this.state.selId === id;
+    const base = 'padding:13px 15px;border-radius:11px;cursor:pointer;transition:all .12s;background:#101620;border:1px solid ';
+    return base + (sel ? '#46d5c4;box-shadow:0 0 0 1px rgba(70,213,196,.35),0 4px 18px rgba(0,0,0,.3);' : '#1c2530;');
+  }
+
+  // ---------- neighborhoods ----------
+  neighborhoods() {
+    const map = {};
+    this.D.properties.forEach(p => {
+      const k = p.neighborhood;
+      if (!map[k]) map[k] = { name: k, city: p.city, permits: 0, major: 0, recent: 0, cite: 0 };
+      map[k].permits += p.permits.length;
+      map[k].major += p.permits.filter(x => x.major).length;
+      p.permits.forEach(x => { const d = this.daysAgo(x.filed); if (d <= 65) map[k].recent++; });
+      map[k].cite += p.src.length;
+    });
+    return Object.values(map);
+  }
+  daysAgo(iso) { return Math.round((new Date('2026-06-18') - new Date(iso)) / 86400000); }
+
+  // ---------- compute result set ----------
+  computeRes(inq) {
+    const D = this.D, R = { active: true, isGraph: false, hasAnswer: false, empty: false, answer: '', cards: [], headerLabel: inq.label, count: 0, note: '', citations: [] };
+    const k = inq.kind, arg = inq.arg;
+    let cards = [];
+    if (k === 'prop_multi_open') {
+      cards = D.properties.filter(p => p.permits.filter(x => this.isOpen(x.status)).length > 1).map(p => this.cardProp(p));
+      R.note = 'Parcels carrying two or more concurrently open permits — a redevelopment / risk signal.';
+    } else if (k === 'prop_open_trade') {
+      cards = D.properties.filter(p => p.permits.some(x => this.isOpen(x.status) && x.type === arg)).map(p => this.cardProp(p));
+      R.note = 'Properties with at least one open ' + arg.toLowerCase() + ' permit.';
+    } else if (k === 'prop_major_trade') {
+      cards = D.properties.filter(p => p.permits.some(x => x.major && x.type === arg)).map(p => this.cardProp(p));
+      R.note = 'Major ' + arg.toLowerCase() + ' work classified from permit scope and value.';
+    } else if (k === 'prop_top_activity') {
+      cards = [...D.properties].sort((a, b) => b.permits.length - a.permits.length).slice(0, 6).map(p => this.cardProp(p));
+      R.note = 'Ranked by total permit volume over the last five years.';
+    } else if (k === 'prop_significant_reno') {
+      cards = D.properties.filter(p => p.permits.filter(x => x.major).length >= 1).map(p => this.cardProp(p));
+      R.note = 'Properties with classified major renovation activity (roofing, electrical, concrete, structural, plumbing, HVAC).';
+    } else if (k === 'prop_ownerchange_active') {
+      cards = D.properties.filter(p => p.ownerHistory.length > 1 && p.permits.some(x => this.isOpen(x.status))).map(p => this.cardProp(p));
+      R.note = 'Recent ownership transfer combined with active permitting — acquisition / value-add signal.';
+    } else if (k === 'prop_active_turnover') {
+      cards = D.properties.filter(p => D.turnover[p.id] && p.permits.some(x => this.isOpen(x.status))).map(p => this.cardProp(p));
+      R.note = 'Active permits coinciding with business turnover at the location.';
+    } else if (k === 'contractor_trade') {
+      cards = D.contractors.filter(c => c.trades.includes(arg)).map(c => this.cardContractor(c));
+      R.note = arg + ' contractors operating in Lee County.';
+    } else if (k === 'contractor_negative_bbb') {
+      cards = D.contractors.filter(c => ['D', 'F'].includes(c.bbb)).map(c => this.cardContractor(c));
+      R.note = 'Contractors carrying a negative (D / F) BBB rating.';
+    } else if (k === 'contractor_complaints') {
+      cards = D.contractors.filter(c => c.complaints.length > 0).map(c => this.cardContractor(c));
+      R.note = 'Contractors with one or more filed BBB complaints.';
+    } else if (k === 'contractor_top') {
+      cards = [...D.contractors].sort((a, b) => b.projects - a.projects).slice(0, 8).map(c => this.cardContractor(c));
+      R.note = 'Most active contractors ranked by completed project count.';
+    } else if (k === 'projects_risky') {
+      const risky = this.riskyIds();
+      D.properties.forEach(p => p.permits.forEach(pm => { if (risky.has(pm.contractor)) cards.push(this.cardProject(p, pm, this.contractor(pm.contractor))); }));
+      R.note = 'Projects performed by contractors with a negative BBB rating or filed complaints.';
+    } else if (k === 'business_multi') {
+      cards = D.businesses.filter(b => b.locations.length > 1).map(b => this.cardBusiness(b));
+      R.note = 'Businesses operating across more than one property.';
+    } else if (k === 'business_top') {
+      cards = [...D.businesses].sort((a, b) => b.locations.length - a.locations.length).slice(0, 8).map(b => this.cardBusiness(b));
+      R.note = 'Businesses ranked by property footprint.';
+    } else if (k === 'owner_multi') {
+      cards = D.owners.filter(o => o.props.length > 1).map(o => this.cardOwner(o));
+      R.note = 'Owners associated with multiple properties.';
+    } else if (k === 'tenant_multi') {
+      cards = D.tenants.filter(t => t.locations.length > 1).map(t => this.cardTenant(t));
+      R.note = 'Tenants operating across multiple locations.';
+    } else if (k === 'neighborhood_increasing') {
+      const ns = this.neighborhoods().filter(n => n.recent >= 2).sort((a, b) => b.recent - a.recent);
+      ns.forEach(n => { n.tag = '▲ ' + n.recent + ' in 60d'; n.tone = 'green'; });
+      cards = ns.map(n => this.cardNeighborhood(n));
+      R.note = 'Neighborhoods with accelerating permit activity in the trailing 60 days.';
+    } else if (k === 'neighborhood_reno') {
+      const ns = this.neighborhoods().filter(n => n.major >= 1).sort((a, b) => b.major - a.major);
+      ns.forEach(n => { n.tag = n.major + ' major'; n.tone = 'amber'; });
+      cards = ns.map(n => this.cardNeighborhood(n));
+      R.note = 'Highest concentration of classified major renovations.';
+    } else if (k === 'relationship_graph') {
+      R.isGraph = true; R.note = 'Linked owner, contractors, businesses, and tenants for the selected parcel.';
+      const p = this.prop(this.state.graphProp);
+      R.count = 1 + this.contractorsOf(p).length + p.businesses.length + p.tenants.length;
+      R.citations = p.src.map(s => Object.assign({ entity: p.address }, s));
+      return R;
+    }
+    R.cards = cards; R.count = cards.length; R.empty = false;
+    R.citations = this.gatherCitations(cards);
+    return R;
+  }
+
+  contractorsOf(p) {
+    const ids = [...new Set(p.permits.map(x => x.contractor))];
+    return ids.map(id => this.contractor(id)).filter(Boolean);
+  }
+  gatherCitations(cards) {
+    const out = []; const seen = new Set();
+    cards.slice(0, 6).forEach(c => {
+      let src = [], label = c.title;
+      if (c.type === 'property') src = this.prop(c.key).src;
+      else if (c.type === 'contractor') src = this.contractor(c.key).src;
+      else if (c.type === 'business') src = this.business(c.key).src;
+      else if (c.type === 'owner') src = this.owner(c.key).src;
+      else if (c.type === 'tenant') src = this.tenant(c.key).src;
+      else if (c.type === 'project') src = this.prop(this.cardKeyProp(c)).src;
+      (src || []).forEach(s => { const key = s.url; if (!seen.has(key)) { seen.add(key); out.push(Object.assign({ entity: label }, s)); } });
+    });
+    return out.slice(0, 8);
+  }
+  cardKeyProp(c) { const m = this.D.properties.find(p => p.permits.some(x => x.id === c.key)); return m ? m.id : 'p1'; }
+
+  // ---------- NL query ----------
+  computeText(q) {
+    const ql = q.toLowerCase();
+    const matchInq = this.D.inquiries.find(i => i.label.toLowerCase() === ql);
+    if (matchInq) return this.computeRes(matchInq);
+    const score = (txt) => { let s = 0; ql.split(/\s+/).forEach(w => { if (w.length > 2 && txt.toLowerCase().includes(w)) s++; }); return s; };
+    let cards = [];
+    const wantsContractor = /contractor|roof|electric|complaint|bbb|plumb|hvac|concrete/.test(ql);
+    if (wantsContractor) {
+      cards = this.D.contractors.map(c => ({ c, s: score(c.name + ' ' + c.trades.join(' ') + ' ' + c.bbb + (c.complaints.length ? ' complaint' : '')) }))
+        .filter(x => x.s > 0).sort((a, b) => b.s - a.s).slice(0, 6).map(x => this.cardContractor(x.c));
+    }
+    if (!cards.length) {
+      cards = this.D.properties.map(p => ({ p, s: score(p.address + ' ' + p.city + ' ' + p.neighborhood + ' ' + p.class + ' ' + p.permits.map(x => x.type + ' ' + x.scope).join(' ')) }))
+        .filter(x => x.s > 0).sort((a, b) => b.s - a.s).slice(0, 6).map(x => this.cardProp(x.p));
+    }
+    if (!cards.length) cards = this.D.properties.slice(0, 4).map(p => this.cardProp(p));
+    const R = { active: true, isGraph: false, hasAnswer: true, empty: false, cards, count: cards.length, headerLabel: q, note: 'Natural-language retrieval over the RAG knowledge layer.' };
+    R.answer = 'Retrieved ' + cards.length + ' source-backed record' + (cards.length === 1 ? '' : 's') + ' from the Lee County corpus matching "' + q + '". Every record below is reconciled into the Elephant Lexicon and carries collection + refresh provenance. Open a record for full citations.';
+    R.citations = this.gatherCitations(cards);
+    return R;
+  }
+
+  // ---------- actions ----------
+  runInquiry(inq) {
+    const res = this.computeRes(inq);
+    let selType = this.state.selType, selId = this.state.selId;
+    if (!res.isGraph && res.cards.length) { const f = res.cards.find(c => c.type !== 'neighborhood'); if (f) { selType = f.type === 'project' ? 'property' : f.type; selId = f.type === 'project' ? this.cardKeyProp(f) : f.key; } }
+    if (res.isGraph) { selType = 'property'; selId = this.state.graphProp; }
+    this.pushEvidence(inq.label, res);
+    this.setState({ activeInquiry: inq.id, res, selType, selId, query: '' });
+  }
+  runFreeText() {
+    const q = (this.state.query || '').trim(); if (!q) return;
+    const res = this.computeText(q);
+    let selType = this.state.selType, selId = this.state.selId;
+    if (res.cards.length) { const f = res.cards[0]; selType = f.type; selId = f.key; }
+    this.pushEvidence(q, res);
+    this.setState({ activeInquiry: null, res, selType, selId });
+  }
+  onQueryInput(e) { this.setState({ query: e.target.value }); }
+  onQueryKey(e) { if (e.key === 'Enter') this.runFreeText(); }
+  onGraphSelect(e) { const id = e.target.value; const res = this.computeRes(this.D.inquiries.find(i => i.kind === 'relationship_graph')); this.setState({ graphProp: id, selType: 'property', selId: id, res }); }
+  onNotes(e) { this.setState({ draftNotes: e.target.value }); }
+  onVersion(e) { this.setState({ draftVersion: e.target.value }); }
+  select(type, id) { this.setState({ selType: type, selId: id }); }
+  setMode(m) { this.setState({ mode: m }); }
+  setScope(s) {
+    this.setState({ scope: s });
+  }
+
+  pushEvidence(query, res) {
+    const cert = this.getStatus('oracle');
+    const now = new Date();
+    const ts = '2026-06-18 ' + String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+    const sources = [...new Set((res.citations || []).map(c => c.system))];
+    const run = {
+      id: 'r' + Date.now(), query, ts, cert,
+      count: res.count, summary: res.note || res.headerLabel,
+      sources, citations: res.citations || []
+    };
+    this.setState(s => ({ evRuns: [run, ...(s.evRuns || [])], evSel: run.id }));
+  }
+
+  // ---------- registry / lifecycle ----------
+  advance(id, to) {
+    this.setState(s => {
+      const st = Object.assign({}, s.statuses); st[id] = to;
+      const cd = Object.assign({}, s.certDates);
+      if (to === 'Certified') cd[id] = '2026-06-18';
+      return { statuses: st, certDates: cd };
+    });
+  }
+  regActions(id) {
+    const st = this.getStatus(id), A = [];
+    const mk = (label, tone, to) => ({ label, tone, onClick: () => this.advance(id, to), style: this.actBtn(tone) });
+    if (st === 'Discovered') A.push(mk('Register metadata', 'blue', 'Registered'));
+    else if (st === 'Registered') A.push(mk('Submit for review', 'blue', 'In Review'));
+    else if (st === 'In Review') { A.push(mk('Approve & certify', 'green', 'Certified')); A.push(mk('Request changes', 'amber', 'Changes Requested')); A.push(mk('Reject', 'red', 'Rejected')); }
+    else if (st === 'Changes Requested') A.push(mk('Resubmit for review', 'blue', 'In Review'));
+    else if (st === 'Certified') { A.push(mk('Deprecate', 'gray', 'Deprecated')); A.push(mk('Suspend', 'red', 'Suspended')); }
+    else if (st === 'Rejected') A.push(mk('Reopen', 'gray', 'Discovered'));
+    else if (st === 'Deprecated' || st === 'Suspended') A.push(mk('Reinstate', 'blue', 'Certified'));
+    return A;
+  }
+  actBtn(tone) {
+    const t = this.T(tone);
+    return 'padding:9px 15px;border-radius:9px;cursor:pointer;font-size:12.5px;font-weight:600;background:' + t.bg + ';color:' + t.fg + ';border:1px solid ' + t.bd + ';';
+  }
+  selectAgent(id) { this.setState({ regSel: id }); }
+  selectEv(id) { this.setState({ evSel: id }); }
+
+  // ---------- detail builder ----------
+  buildDetail() {
+    const t = this.state.selType, id = this.state.selId;
+    if (!t || !id) return null;
+    if (t === 'property') return this.detailProp(this.prop(id));
+    if (t === 'contractor') return this.detailContractor(this.contractor(id));
+    if (t === 'business') return this.detailBusiness(this.business(id));
+    if (t === 'owner') return this.detailOwner(this.owner(id));
+    if (t === 'tenant') return this.detailTenant(this.tenant(id));
+    return null;
+  }
+  kindChip(label, tone) { const x = this.T(tone); return { kind: label, kindStyle: 'font-size:10px;letter-spacing:.13em;font-weight:600;font-family:\'IBM Plex Mono\',monospace;padding:3px 9px;border-radius:6px;background:' + x.bg + ';color:' + x.fg + ';border:1px solid ' + x.bd + ';' }; }
+  cite(src) { return (src || []).map(s => Object.assign({}, s)); }
+  row(opts) { return Object.assign({ hasTag: false, tag: '', tagBg: '', tagFg: '', tagBd: '', primary: '', secondary: '', value: '', meta: '' }, opts); }
+  tagFor(tone, label) { const x = this.T(tone); return { hasTag: true, tag: label, tagBg: x.bg, tagFg: x.fg, tagBd: x.bd }; }
+
+  detailProp(p) {
+    const open = p.permits.filter(x => this.isOpen(x.status));
+    const major = p.permits.filter(x => x.major);
+    const signals = [];
+    if (open.length > 1) signals.push(Object.assign({ label: open.length + ' open permits' }, this.T('accent')));
+    if (major.length) signals.push(Object.assign({ label: major.length + ' major renovation' + (major.length > 1 ? 's' : '') }, this.T('amber')));
+    if (p.ownerHistory.length > 1) signals.push(Object.assign({ label: 'ownership change' }, this.T('blue')));
+    if (this.D.turnover[p.id]) signals.push(Object.assign({ label: 'business turnover' }, this.T('red')));
+    const risky = this.riskyIds();
+    const contractors = this.contractorsOf(p);
+    const sections = [
+      { title: 'OWNERSHIP HISTORY', rows: p.ownerHistory.map((h, i) => this.row(Object.assign({ primary: h.owner, secondary: h.type, value: h.date, meta: i === 0 ? 'current' : 'prior' }, this.tagFor(i === 0 ? 'green' : 'gray', i === 0 ? 'NOW' : 'PAST'))) ), empty: false },
+      { title: 'PERMIT HISTORY', rows: p.permits.map(pm => { const tn = this.permTone(pm.status); return this.row({ hasTag: true, tag: pm.status, tagBg: tn.bg, tagFg: tn.fg, tagBd: tn.bd, primary: pm.type + (pm.major ? ' · major' : ''), secondary: pm.scope + ' — ' + this.contractor(pm.contractor).name, value: this.money(pm.value), meta: 'filed ' + pm.filed }); }), empty: false },
+      { title: 'CONTRACTORS', rows: contractors.map(c => this.row(Object.assign({ primary: c.name, secondary: c.trades.join(' / ') + ' · ' + c.review + '★', value: 'BBB ' + c.bbb, meta: c.complaints.length ? c.complaints.length + ' complaints' : 'no complaints' }, risky.has(c.id) ? this.tagFor('red', 'RISK') : this.tagFor('gray', 'OK')))), empty: contractors.length === 0 },
+      { title: 'BUSINESS OCCUPANCY', rows: p.businesses.map(bid => { const b = this.business(bid); return this.row({ primary: b.name, secondary: b.btype + ' · ' + b.status, value: b.sunbiz, meta: 'reg ' + b.registered }); }), empty: p.businesses.length === 0 },
+      { title: 'TENANT ACTIVITY', rows: p.tenants.map(tid => { const tt = this.tenant(tid); return this.row({ primary: tt.name, secondary: tt.activity, value: tt.ttype, meta: tt.locations.length + ' locations' }); }), empty: p.tenants.length === 0 }
+    ];
+    if (this.D.turnover[p.id]) sections.push({ title: 'TURNOVER SIGNAL', rows: [this.row({ primary: this.D.turnover[p.id], secondary: '', value: '', meta: '' })], empty: false });
+    if (major.length) sections.push({ title: 'MAJOR IMPROVEMENTS', rows: major.map(pm => this.row(Object.assign({ primary: pm.type + ' — ' + pm.scope, secondary: this.contractor(pm.contractor).name, value: this.money(pm.value), meta: pm.status }, this.tagFor('amber', 'MAJOR')))), empty: false });
+    return Object.assign({ id: p.id, title: p.address, subtitle: p.city + ', FL · ' + p.neighborhood + ' · ' + p.class + ' · built ' + p.year, signals, sections, citations: this.cite(p.src) }, this.kindChip('PROPERTY', 'accent'));
+  }
+  detailContractor(c) {
+    const signals = [Object.assign({ label: 'BBB ' + c.bbb }, this.bbbTone(c.bbb)), Object.assign({ label: c.review + ' / 5 reviews' }, this.T('gray'))];
+    if (c.complaints.length) signals.push(Object.assign({ label: c.complaints.length + ' complaints' }, this.T('red')));
+    const projects = []; this.D.properties.forEach(p => p.permits.forEach(pm => { if (pm.contractor === c.id) projects.push({ p, pm }); }));
+    const sections = [
+      { title: 'PROJECT & PERMIT HISTORY', rows: projects.map(x => { const tn = this.permTone(x.pm.status); return this.row({ hasTag: true, tag: x.pm.status, tagBg: tn.bg, tagFg: tn.fg, tagBd: tn.bd, primary: x.pm.type + ' — ' + x.p.address, secondary: x.pm.scope, value: this.money(x.pm.value), meta: 'filed ' + x.pm.filed }); }), empty: projects.length === 0 },
+      { title: 'BBB COMPLAINTS', rows: c.complaints.map(cp => this.row(Object.assign({ primary: cp.summary, secondary: 'filed ' + cp.date, value: cp.status, meta: '' }, this.tagFor(cp.status === 'Unresolved' ? 'red' : 'amber', '!')))), empty: c.complaints.length === 0 },
+      { title: 'REVIEW SUMMARY', rows: [this.row({ primary: c.review + ' / 5.0 average', secondary: c.review >= 4 ? 'Consistently positive customer feedback.' : (c.review >= 3 ? 'Mixed feedback with recurring service issues.' : 'Predominantly negative; repeated unresolved disputes.'), value: 'BBB ' + c.bbb, meta: c.projects + ' projects' })], empty: false }
+    ];
+    return Object.assign({ id: c.id, title: c.name, subtitle: c.trades.join(' / ') + ' · License ' + c.license + ' · ' + c.county + ' County', signals, sections, citations: this.cite(c.src) }, this.kindChip('CONTRACTOR', c.complaints.length || ['D', 'F'].includes(c.bbb) ? 'red' : 'green'));
+  }
+  detailBusiness(b) {
+    const signals = [Object.assign({ label: b.status }, b.status === 'Active' ? this.T('green') : this.T('gray'))];
+    if (b.locations.length > 1) signals.push(Object.assign({ label: b.locations.length + ' locations' }, this.T('accent')));
+    const sections = [
+      { title: 'REGISTRATION', rows: [this.row({ primary: b.name, secondary: 'Owner: ' + b.owner, value: b.sunbiz, meta: 'reg ' + b.registered })], empty: false },
+      { title: 'LOCATIONS', rows: b.locations.map(pid => { const p = this.prop(pid); return this.row({ primary: p.address, secondary: p.city + ' · ' + p.neighborhood, value: p.class, meta: p.parcel }); }), empty: false }
+    ];
+    return Object.assign({ id: b.id, title: b.name, subtitle: b.btype + ' · Sunbiz ' + b.sunbiz, signals, sections, citations: this.cite(b.src) }, this.kindChip('BUSINESS', 'blue'));
+  }
+  detailOwner(o) {
+    const sections = [{ title: 'PROPERTY PORTFOLIO', rows: o.props.map(pid => { const p = this.prop(pid); return this.row({ primary: p.address, secondary: p.city + ' · ' + p.neighborhood, value: p.class, meta: p.permits.length + ' permits' }); }), empty: false }];
+    return Object.assign({ id: o.id, title: o.name, subtitle: o.type + ' · owner since ' + o.since + ' · ' + o.props.length + ' parcels', signals: [Object.assign({ label: o.props.length + ' properties' }, this.T('accent'))], sections, citations: this.cite(o.src) }, this.kindChip('OWNER', 'blue'));
+  }
+  detailTenant(t) {
+    const sections = [
+      { title: 'OCCUPANCY', rows: t.locations.map(pid => { const p = this.prop(pid); return this.row({ primary: p.address, secondary: p.city + ' · ' + p.neighborhood, value: p.class, meta: '' }); }), empty: false },
+      { title: 'ASSOCIATED BUSINESSES', rows: t.businesses.map(bid => { const b = this.business(bid); return this.row({ primary: b.name, secondary: b.btype, value: b.status, meta: b.sunbiz }); }), empty: t.businesses.length === 0 }
+    ];
+    return Object.assign({ id: t.id, title: t.name, subtitle: t.ttype + ' tenant · ' + t.activity, signals: [Object.assign({ label: t.locations.length + ' locations' }, this.T('accent'))], sections, citations: this.cite(t.src) }, this.kindChip('TENANT', 'accent'));
+  }
+
+  // ---------- graph ----------
+  buildGraph() {
+    const p = this.prop(this.state.graphProp); if (!p) return null;
+    const o = this.owner(p.owner);
+    const contractors = this.contractorsOf(p);
+    const risky = this.riskyIds();
+    const dot = (tone) => { const x = this.T(tone); return 'width:8px;height:8px;border-radius:50%;background:' + x.fg + ';box-shadow:0 0 8px ' + x.fg + ';'; };
+    return {
+      center: { title: p.address, sub: p.city + ' · ' + p.neighborhood },
+      clusters: [
+        { title: 'OWNER', dotStyle: dot('blue'), empty: false, nodes: [{ name: o.name, role: o.type + ' · since ' + o.since }] },
+        { title: 'CONTRACTORS', dotStyle: dot('accent'), empty: contractors.length === 0, nodes: contractors.map(c => ({ name: c.name, role: c.trades.join('/') + ' · BBB ' + c.bbb + (risky.has(c.id) ? ' · risk' : '') })) },
+        { title: 'BUSINESSES', dotStyle: dot('amber'), empty: p.businesses.length === 0, nodes: p.businesses.map(b => { const x = this.business(b); return { name: x.name, role: x.btype + ' · ' + x.status }; }) },
+        { title: 'TENANTS', dotStyle: dot('green'), empty: p.tenants.length === 0, nodes: p.tenants.map(t => { const x = this.tenant(t); return { name: x.name, role: x.ttype }; }) }
+      ]
+    };
+  }
+
+  // ---------- render ----------
+  renderVals() {
+    const D = this.D, st = this.state;
+    const tick = st.tick;
+    const modeDefs = [
+      { id: 'intelligence', label: 'Intelligence', desc: 'Search, explore, inspect', icon: 'I' },
+      { id: 'registry', label: 'Registry', desc: 'Discover & certify agents', icon: 'R' },
+      { id: 'marketplace', label: 'Marketplace', desc: 'Certified agents only', icon: 'M' },
+      { id: 'evidence', label: 'Evidence', desc: 'Provenance ledger', icon: 'E' }
+    ];
+    const modeTabs = modeDefs.map(m => {
+      const active = st.mode === m.id;
+      return {
+        label: m.label, desc: m.desc, icon: m.icon, onClick: () => this.setMode(m.id),
+        style: 'display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:10px;cursor:pointer;transition:all .12s;' + (active ? 'background:linear-gradient(90deg,rgba(70,213,196,.14),rgba(70,213,196,.04));box-shadow:inset 2px 0 0 #46d5c4;' : 'background:transparent;'),
+        iconStyle: 'width:26px;height:26px;flex:0 0 auto;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:\'IBM Plex Mono\',monospace;font-weight:600;font-size:13px;' + (active ? 'background:#46d5c4;color:#042421;' : 'background:#161d25;color:#7e8b97;')
+      };
+    });
+
+    const c = D.corpus;
+    const corpusChips = [
+      { k: 'parcels', v: String(c.properties || 0) },
+      { k: 'permits', v: String(c.permits || 0) },
+      { k: 'sources', v: String(c.sources || 0) },
+      { k: 'county', v: 'Lee, FL' }
+    ];
+
+    const oStatus = this.getStatus('oracle');
+    const oTone = this.statusTone(oStatus);
+    const oracle = {
+      status: oStatus, certified: oStatus === 'Certified',
+      badgeStyle: 'display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:9px;background:' + oTone.bg + ';border:1px solid ' + oTone.bd + ';color:' + oTone.fg + ';',
+      dotStyle: 'width:7px;height:7px;border-radius:50%;background:' + oTone.fg + ';box-shadow:0 0 8px ' + oTone.fg + ';'
+    };
+
+    // intelligence banner
+    let banner;
+    if (oStatus === 'Certified') {
+      banner = { style: 'flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:11px 20px;background:rgba(95,208,138,0.07);border-bottom:1px solid rgba(95,208,138,0.22);', dotStyle: 'width:8px;height:8px;border-radius:50%;background:#5fd08a;box-shadow:0 0 8px #5fd08a;flex:0 0 auto;', text: 'Results produced by certified agent oracle v' + (st.draftVersion || '1.0.0') + ' — every record is source-backed and lineage-tracked.', note: 'certified ' + (st.certDates['oracle'] || '2026-06-18') };
+    } else {
+      banner = { style: 'flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:11px 20px;background:rgba(232,183,90,0.07);border-bottom:1px solid rgba(232,183,90,0.22);', dotStyle: 'width:8px;height:8px;border-radius:50%;background:#e8b75a;box-shadow:0 0 8px #e8b75a;flex:0 0 auto;', text: 'Responsible agent oracle is ' + oStatus + ' — results are provisional until certified in the Registry.', note: 'governance gate active' };
+    }
+
+    const scopes = [['all', 'All'], ['property', 'Property'], ['contractor', 'Contractor'], ['business', 'Business'], ['tenant', 'Tenant']];
+    const scopeTabs = scopes.map(s => ({ label: s[1], onClick: () => this.setScope(s[0]), style: 'padding:5px 11px;border-radius:7px;cursor:pointer;font-size:12px;font-weight:500;' + (st.scope === s[0] ? 'background:#1c2c2b;color:#5fe0d0;border:1px solid rgba(70,213,196,.3);' : 'background:#0e1319;color:#8593a0;border:1px solid #1e2630;') }));
+
+    const groupMap = {
+      'Permits & Renovations': ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8'],
+      'Contractors & Risk': ['q9', 'q10', 'q11', 'q12', 'q13', 'q21'],
+      'Ownership & Occupancy': ['q14', 'q15', 'q16', 'q17', 'q18', 'q22'],
+      'Neighborhood Signals': ['q19', 'q20'],
+      'Relationships': ['q23']
+    };
+    const inquiryGroups = Object.keys(groupMap).map(title => ({
+      title,
+      items: groupMap[title].map(qid => {
+        const inq = D.inquiries.find(i => i.id === qid); if (!inq) return null;
+        const active = st.activeInquiry === qid;
+        return {
+          label: inq.label, onClick: () => this.runInquiry(inq),
+          style: 'display:flex;align-items:flex-start;gap:9px;padding:9px 11px;border-radius:9px;cursor:pointer;font-size:12px;transition:all .12s;' + (active ? 'background:rgba(70,213,196,.12);border:1px solid rgba(70,213,196,.35);color:#cdeee8;' : 'background:#0e1319;border:1px solid #18212a;color:#aeb9c4;'),
+          dotStyle: 'width:6px;height:6px;border-radius:50%;margin-top:5px;flex:0 0 auto;background:' + (active ? '#5fe0d0' : '#3a4654') + ';'
+        };
+      }).filter(Boolean)
+    }));
+
+    const res = st.res || { active: false, empty: true };
+    if (st.res) { res.empty = false; res.active = true; }
+    else { res.active = false; res.empty = true; }
+
+    const hasDetail = !!(st.selType && st.selId) && st.mode === 'intelligence';
+    const detail = hasDetail ? this.buildDetail() : null;
+
+    const graph = (st.res && st.res.isGraph) ? this.buildGraph() : null;
+    const graphOptions = D.properties.map(p => ({ id: p.id, label: p.address + ' · ' + p.city }));
+
+    // ---- registry ----
+    const lifeOrder = ['Discovered', 'Registered', 'In Review', 'Changes Requested', 'Certified', 'Rejected', 'Deprecated', 'Suspended'];
+    const agentsRows = D.agents.map(a => {
+      const stt = this.getStatus(a.id), tn = this.statusTone(stt);
+      const sel = st.regSel === a.id;
+      return {
+        id: a.id, display: a.display, role: a.role, version: a.version, status: stt, isOracle: a.id === 'oracle',
+        initial: a.id === 'oracle' ? '◇' : a.display.charAt(0).toUpperCase(),
+        sourceLabel: a.source === 'self' ? 'this demo' : 'team-kit',
+        onClick: () => this.selectAgent(a.id),
+        rowStyle: 'display:flex;align-items:center;gap:14px;padding:13px 15px;border-radius:11px;cursor:pointer;transition:all .12s;background:' + (sel ? '#101822' : '#0e1319') + ';border:1px solid ' + (sel ? '#46d5c4' : (a.id === 'oracle' ? 'rgba(70,213,196,.28)' : '#1c2530')) + ';',
+        pillStyle: 'font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;white-space:nowrap;background:' + tn.bg + ';color:' + tn.fg + ';border:1px solid ' + tn.bd + ';',
+        avatarStyle: 'width:34px;height:34px;flex:0 0 auto;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:\'IBM Plex Mono\',monospace;font-weight:600;font-size:15px;background:' + (a.id === 'oracle' ? 'linear-gradient(140deg,#46d5c4,#2f7fd6)' : '#161d25') + ';color:' + (a.id === 'oracle' ? '#042421' : '#9aa7b4') + ';'
+      };
+    });
+    const regA = D.agents.find(a => a.id === st.regSel) || D.agents[0];
+    const regStatus = this.getStatus(regA.id), regTone = this.statusTone(regStatus);
+    const canonical = ['Discovered', 'Registered', 'In Review', 'Certified'];
+    const regLifecycle = lifeOrder.map(s => {
+      const tn = this.statusTone(s);
+      const cur = s === regStatus;
+      const done = canonical.indexOf(s) > -1 && canonical.indexOf(s) < canonical.indexOf(regStatus);
+      return { label: s, style: 'padding:7px 11px;border-radius:8px;font-size:11.5px;font-weight:600;white-space:nowrap;font-family:\'IBM Plex Mono\',monospace;' + (cur ? 'background:' + tn.bg + ';color:' + tn.fg + ';border:1px solid ' + tn.bd + ';box-shadow:0 0 0 1px ' + tn.bd + ';' : (done ? 'background:rgba(95,208,138,.08);color:#6fae8b;border:1px solid rgba(95,208,138,.2);' : 'background:#0e1319;color:#56636f;border:1px solid #1a222b;')) };
+    });
+    const regDetail = {
+      initial: regA.id === 'oracle' ? '◇' : regA.display.charAt(0).toUpperCase(),
+      display: regA.display, role: regA.role, version: regA.id === 'oracle' ? (st.draftVersion || '1.0.0') : regA.version,
+      summary: regA.summary, triggers: regA.triggers, skills: regA.skills, deps: regA.deps.length ? regA.deps : ['—'], runtime: regA.runtime, docs: regA.docs,
+      status: regStatus, statusPill: 'font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;background:' + regTone.bg + ';color:' + regTone.fg + ';border:1px solid ' + regTone.bd + ';',
+      certifiedDate: st.certDates[regA.id] || '—', reviewer: regStatus === 'Certified' ? st.reviewer : (regA.reviewer || '—'),
+      sourceLabel: regA.source === 'self' ? 'Built in this demo' : 'Discovered from soofi-xyz-team-kit',
+      isOracle: regA.id === 'oracle',
+      actions: this.regActions(regA.id),
+      avatarStyle: 'width:46px;height:46px;flex:0 0 auto;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:\'IBM Plex Mono\',monospace;font-weight:700;font-size:21px;background:' + (regA.id === 'oracle' ? 'linear-gradient(140deg,#46d5c4,#2f7fd6)' : '#161d25') + ';color:' + (regA.id === 'oracle' ? '#042421' : '#9aa7b4') + ';'
+    };
+    const discoveredCount = D.agents.length;
+
+    // ---- marketplace ----
+    const certifiedAgents = D.agents.filter(a => this.getStatus(a.id) === 'Certified').map(a => ({
+      initial: a.id === 'oracle' ? '◇' : a.display.charAt(0).toUpperCase(),
+      display: a.display, role: a.role, version: a.id === 'oracle' ? (st.draftVersion || '1.0.0') : a.version,
+      summary: a.summary, triggers: a.triggers, skills: a.skills, deps: a.deps.length ? a.deps : ['—'], runtime: a.runtime,
+      certifiedDate: st.certDates[a.id] || a.certifiedDate || '2026-06-18', reviewer: a.id === 'oracle' ? st.reviewer : (a.reviewer || 'platform-governance'),
+      isOracle: a.id === 'oracle',
+      avatarStyle: 'width:40px;height:40px;flex:0 0 auto;border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:\'IBM Plex Mono\',monospace;font-weight:700;font-size:18px;background:' + (a.id === 'oracle' ? 'linear-gradient(140deg,#46d5c4,#2f7fd6)' : '#161d25') + ';color:' + (a.id === 'oracle' ? '#042421' : '#9aa7b4') + ';'
+    }));
+    const hiddenCount = D.agents.length - certifiedAgents.length;
+    const oracleCertified = this.getStatus('oracle') === 'Certified';
+
+    // ---- evidence ----
+    const evRuns = (st.evRuns || []).map(r => {
+      const tn = this.statusTone(r.cert), sel = st.evSel === r.id;
+      return {
+        id: r.id, query: r.query, ts: r.ts, count: r.count, summary: r.summary, agent: 'oracle',
+        sources: r.sources.length ? r.sources.join(' · ') : '—', cert: r.cert,
+        onClick: () => this.selectEv(r.id),
+        rowStyle: 'padding:14px 16px;border-radius:11px;cursor:pointer;transition:all .12s;background:' + (sel ? '#101822' : '#0e1319') + ';border:1px solid ' + (sel ? '#46d5c4' : '#1c2530') + ';',
+        certPill: 'font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:20px;white-space:nowrap;background:' + tn.bg + ';color:' + tn.fg + ';border:1px solid ' + tn.bd + ';'
+      };
+    });
+    const evSelRun = (st.evRuns || []).find(r => r.id === st.evSel);
+    let evDetail = null;
+    if (evSelRun) {
+      const tn = this.statusTone(evSelRun.cert);
+      evDetail = {
+        query: evSelRun.query, ts: evSelRun.ts, count: evSelRun.count, summary: evSelRun.summary, agent: 'oracle', cert: evSelRun.cert,
+        certPill: 'font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;background:' + tn.bg + ';color:' + tn.fg + ';border:1px solid ' + tn.bd + ';',
+        citations: evSelRun.citations,
+        provisional: evSelRun.cert !== 'Certified'
+      };
+    }
+    const evEmpty = evRuns.length === 0;
+
+    return {
+      tick,
+      isIntelligence: st.mode === 'intelligence', isRegistry: st.mode === 'registry', isMarketplace: st.mode === 'marketplace', isEvidence: st.mode === 'evidence',
+      modeTabs, corpusChips, corpus: c, oracle,
+      banner, scope: st.scope, scopeTabs, query: st.query,
+      onQueryInput: (e) => this.onQueryInput(e), onQueryKey: (e) => this.onQueryKey(e), runFreeText: () => this.runFreeText(),
+      inquiryGroups,
+      res: { active: !!st.res, empty: !st.res, isGraph: !!(st.res && st.res.isGraph), hasAnswer: !!(st.res && st.res.hasAnswer), count: st.res ? st.res.count : 0, headerLabel: st.res ? st.res.headerLabel : '', note: st.res ? st.res.note : '', answer: st.res ? st.res.answer : '', cards: st.res ? (st.res.cards || []) : [] },
+      hasDetail, noDetail: !hasDetail, detail,
+      graph, graphProp: st.graphProp, graphOptions, onGraphSelect: (e) => this.onGraphSelect(e),
+      agentsRows, regLifecycle, regDetail, discoveredCount,
+      certifiedAgents, hiddenCount, oracleCertified,
+      evRuns, evDetail, evEmpty,
+      draftNotes: st.draftNotes, draftVersion: st.draftVersion || '1.0.0', onNotes: (e) => this.onNotes(e), onVersion: (e) => this.onVersion(e),
+      oraclePending: !oracleCertified,
+      goRegistry: () => this.setMode('registry'), goMarketplace: () => this.setMode('marketplace')
+    };
+  }
+}
+</script>
+</body>
+</html>

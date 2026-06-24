@@ -1,0 +1,1238 @@
+{
+  "syncedAt": "2026-06-19T04:24:29.532Z",
+  "soofi": {
+    "repo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+    "commit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+    "version": "0.15.1",
+    "agentCount": 30,
+    "skillCount": 39,
+    "agentsPath": "agents/*.md",
+    "skillsPath": "skills/*/SKILL.md"
+  },
+  "pr54": {
+    "repo": "https://github.com/soofi-xyz/soofi-xyz-team-kit/pull/54",
+    "commit": "a288d2f234bc1d92f0be11f9ac448e4ee2ce420f",
+    "includesElephantQuerySkill": true
+  },
+  "elephant": {
+    "repo": "https://github.com/elephant-xyz/skills",
+    "commit": "f632d3787c217e54df83cd89d1bc352943f91d40",
+    "skillCount": 13
+  },
+  "sources": [
+    {
+      "id": "soofi-team-kit",
+      "label": "Soofi XYZ Team Kit",
+      "repo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "ref": "main",
+      "commit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "files": 69,
+      "agents": 30,
+      "skills": 39,
+      "includes": [
+        "agents/*.md",
+        "skills/*/SKILL.md",
+        "plugin.json"
+      ]
+    },
+    {
+      "id": "soofi-team-kit-pr-54",
+      "label": "Soofi PR #54 · elephant query db usage skill",
+      "repo": "https://github.com/soofi-xyz/soofi-xyz-team-kit/pull/54",
+      "ref": "pull/54/head",
+      "commit": "a288d2f234bc1d92f0be11f9ac448e4ee2ce420f",
+      "files": 15,
+      "skills": 1,
+      "includes": [
+        "skills/use-elephant-query-db/SKILL.md"
+      ]
+    },
+    {
+      "id": "elephant-skills",
+      "label": "Elephant Oracle Skills",
+      "repo": "https://github.com/elephant-xyz/skills",
+      "ref": "main",
+      "commit": "f632d3787c217e54df83cd89d1bc352943f91d40",
+      "files": 13,
+      "skills": 13,
+      "includes": [
+        "skills/*/SKILL.md"
+      ]
+    }
+  ],
+  "agents": [
+    {
+      "id": "abra",
+      "display": "abra",
+      "role": "Solver-service specialist",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Solver-service specialist. Use proactively when designing or scaffolding optimization services that combine Glue PySpark data preparation with OR-Tools solver logic.",
+      "triggers": "/abra Solver-service specialist",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/063.png",
+      "iconLabel": "Abra",
+      "skills": [
+        "apply-engineering-guidelines",
+        "build-solver-services"
+      ],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/abra.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/abra.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "alakazam",
+      "display": "alakazam",
+      "role": "RAG agent builder",
+      "status": "Certified",
+      "version": "0.15.1",
+      "summary": "RAG agent builder. Use proactively when designing, implementing, or reviewing reusable AWS RAG agents with SAM local Lambda emulation, Docker OpenSearch replay, Bedrock embeddings, OpenSearch retrieval, knowledge libraries, schema/header mapping, prior-decision reuse, confidence thresholds, and review loops.",
+      "triggers": "/alakazam RAG agent builder",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/065.png",
+      "iconLabel": "Alakazam",
+      "skills": [
+        "apply-engineering-guidelines",
+        "build-ai-agents",
+        "build-rag-systems"
+      ],
+      "deps": [
+        "Bedrock",
+        "OpenSearch",
+        "Lambda"
+      ],
+      "runtime": "AWS Lambda · Bedrock",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/alakazam.md",
+      "source": "team-kit",
+      "certifiedDate": "2026-06-18",
+      "reviewer": "platform-governance",
+      "sourcePath": "agents/alakazam.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.5-high"
+    },
+    {
+      "id": "arceus",
+      "display": "arceus",
+      "role": "Master router for this kit",
+      "status": "Certified",
+      "version": "0.15.1",
+      "summary": "Master router for this kit. Use proactively at the start of any task when the user has not named a specific agent, asks \"which agent or skill should I use\", wants an overview of available specialists, or needs to be routed to the right combination of agents and skills. Returns recommendations with rationale and invocation hints — does not perform the implementation.",
+      "triggers": "/arceus Master router for this kit",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/493.png",
+      "iconLabel": "Arceus",
+      "skills": [
+        "apply-engineering-guidelines"
+      ],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/arceus.md",
+      "source": "team-kit",
+      "certifiedDate": "2026-06-18",
+      "reviewer": "platform-governance",
+      "sourcePath": "agents/arceus.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.5-medium"
+    },
+    {
+      "id": "ash",
+      "display": "ash",
+      "role": "AI-agent builder",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "AI-agent builder. Use proactively when designing, implementing, or extending Asana-triggered Lambda agents that use the Chat SDK with @soofi-xyz/chat-adapter-asana for ingress, @soofi-xyz/chat-state-dynamodb for Chat SDK state, AgentCore Memory for AI conversation history, Bedrock via the Vercel AI SDK for reasoning, and LangSmith for telemetry.",
+      "triggers": "/ash AI-agent builder",
+      "iconUrl": "https://archives.bulbagarden.net/media/upload/3/3a/Ash_OS_2.png",
+      "iconLabel": "Ash",
+      "skills": [
+        "apply-engineering-guidelines",
+        "build-ai-agents"
+      ],
+      "deps": [
+        "Bedrock",
+        "DynamoDB",
+        "Lambda",
+        "Asana",
+        "Vercel"
+      ],
+      "runtime": "AWS Lambda · Bedrock",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/ash.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/ash.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "audino",
+      "display": "audino",
+      "role": "Frontend bug-fix specialist",
+      "status": "Registered",
+      "version": "0.15.1",
+      "summary": "Frontend bug-fix specialist. Use proactively when triaging or fixing UI bugs, confirming design mismatches, auditing commit overrides, and strengthening tests to prevent regressions.",
+      "triggers": "/audino Frontend bug-fix specialist",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/531.png",
+      "iconLabel": "Audino",
+      "skills": [
+        "apply-engineering-guidelines",
+        "frontend-bug-fix",
+        "responsive-design-tests"
+      ],
+      "deps": [],
+      "runtime": "Node · Frontend",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/audino.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/audino.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "braviary",
+      "display": "braviary",
+      "role": "Braviary",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Orchestrates Google marketing stack v1 (GTM, GA4, Search Console, Google Ads linking, stakeholder admin access, QA handoff). Use when coordinating the full implementation across Google consoles and application code; delegates frontend GTM wiring to `castform`.",
+      "triggers": "/braviary Braviary",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/628.png",
+      "iconLabel": "Braviary",
+      "skills": [],
+      "deps": [],
+      "runtime": "Node · Frontend",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/braviary.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/braviary.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "castform",
+      "display": "castform",
+      "role": "Castform",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Adds Google Tag Manager (GTM-…) to any frontend the user points at and helps discover candidate CTA/user-action tracking events. Use when you have (or will obtain) a Container ID and need the official head + body snippets wired into Next.js, Vite, Remix, Astro, Nuxt, plain HTML, or another stack without hand-rolling GA4 in source.",
+      "triggers": "/castform Castform",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/351.png",
+      "iconLabel": "Castform",
+      "skills": [],
+      "deps": [],
+      "runtime": "Node · Frontend",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/castform.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/castform.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "chatot",
+      "display": "chatot",
+      "role": "Communication-activity specialist",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Communication-activity specialist. Use proactively when building provider adapters, send workflows, routing, delivery feedback processing, response ingestion, or closing the communication-activity lifecycle for SMS or email.",
+      "triggers": "/chatot Communication-activity specialist",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/441.png",
+      "iconLabel": "Chatot",
+      "skills": [
+        "apply-engineering-guidelines",
+        "manage-communication-activity"
+      ],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/chatot.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/chatot.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "conkeldurr",
+      "display": "conkeldurr",
+      "role": "Conkeldurr",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Platform-engineering specialist that owns the SOCAPITAL platform product map across Account, Bootstrap, Build, Marketplace, Deployer, Puller, Persist, Connect, Translate, Product, Rules, and Lexicon. Use proactively whenever a user asks for tenant/account lifecycle, product distribution, CDK artifact builds, deployment, graph persistence, governed vocabulary, partner integration, translation, product orchestration, rule decisioning, vendor APIs, webhooks, SFTP, static-IP allow-listing, or any other capability a platform product covers. Always determines whether to integrate with an existing deployment or provision a new product before writing infrastructure code.",
+      "triggers": "/conkeldurr Conkeldurr",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/534.png",
+      "iconLabel": "Conkeldurr",
+      "skills": [
+        "apply-engineering-guidelines",
+        "build-bootstrap-cli",
+        "build-build-service",
+        "build-connect-service",
+        "build-inbound-sftp-workflows",
+        "build-lexicon-product",
+        "build-marketplace-puller",
+        "build-persist-service",
+        "build-product-deployer",
+        "build-product-service",
+        "build-rules-product",
+        "build-saas-marketplace",
+        "build-tenant-account-manager",
+        "build-translate-service"
+      ],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/conkeldurr.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/conkeldurr.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.5-high"
+    },
+    {
+      "id": "delibird",
+      "display": "delibird",
+      "role": "Report catalog app builder",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Report catalog app builder. Use proactively when designing, scaffolding, deploying, or updating a single AWS-hosted catalog page that lists existing report URLs and provides a CLI for registering reports.",
+      "triggers": "/delibird Report catalog app builder",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/225.png",
+      "iconLabel": "Delibird",
+      "skills": [],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/delibird.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/delibird.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "ditto",
+      "display": "ditto",
+      "role": "S3 → external file-share sync workflow builder",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "S3 → external file-share sync workflow builder. Use proactively when designing or scaffolding a scheduled workflow that copies a configured S3 bucket/prefix into an external file-sharing destination — Citrix Endpoint Management by default via its REST API, or a pluggable provider (Citrix ShareFile, generic SFTP, etc.). Owns infrastructure (CDK), runtime (Step Functions Distributed Map: plan + cost gate → per-file workers → aggregate, started by EventBridge Scheduler), credentials/config in SSM Parameter Store + Secrets Manager (with user-runnable CLI commands), and CI/CD wiring for DEV and PROD.",
+      "triggers": "/ditto S3 → external file-share sync workflow builder",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/132.png",
+      "iconLabel": "Ditto",
+      "skills": [
+        "apply-engineering-guidelines",
+        "build-batch-workflows",
+        "build-inbound-sftp-workflows",
+        "integrate-ci-cd"
+      ],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/ditto.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/ditto.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "eevee",
+      "display": "eevee",
+      "role": "Editorial sub-agent backed by the Eevee RAG",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Editorial sub-agent backed by the Eevee RAG. Use proactively when drafting pitches, organization propositions, website copy, white/lite-papers, RFP responses, battle cards, client decks, or YC/a16z applications grounded in the org's curated knowledge base. Retrieves from the live Eevee RAG (Guidance library + founder articles), drafts in Eevee's editorial voice, and can publish the result as a password-protected HTML page with a secure shareable URL.",
+      "triggers": "/eevee Editorial sub-agent backed by the Eevee RAG",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/133.png",
+      "iconLabel": "Eevee",
+      "skills": [
+        "use-eevee"
+      ],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/eevee.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/eevee.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.5-high"
+    },
+    {
+      "id": "espeon",
+      "display": "espeon",
+      "role": "End-to-end RAG system builder",
+      "status": "Certified",
+      "version": "0.15.1",
+      "summary": "End-to-end RAG system builder. Use proactively when designing or implementing RAG from local TypeScript CLI POC through AWS OpenSearch production migration, historical backfill, webhook ingestion, and agent usage instructions.",
+      "triggers": "/espeon End-to-end RAG system builder",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/196.png",
+      "iconLabel": "Espeon",
+      "skills": [
+        "apply-engineering-guidelines",
+        "build-batch-workflows",
+        "build-local-rag-pocs",
+        "build-rag-systems"
+      ],
+      "deps": [
+        "OpenSearch"
+      ],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/espeon.md",
+      "source": "team-kit",
+      "certifiedDate": "2026-06-18",
+      "reviewer": "platform-governance",
+      "sourcePath": "agents/espeon.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.5-high"
+    },
+    {
+      "id": "hoothoot",
+      "display": "hoothoot",
+      "role": "Prod-first Persist reporting agent that runs a single Lexicon-rule-aware flow",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Prod-first Persist reporting agent that runs a single Lexicon-rule-aware flow. Answers current counts, \"how many\" questions, tables, charts, dashboards, and builds secure static HTML reports. Resolves registered Lexicon rulesets, existing filters, or separate rules for rule-derived populations; uses released Rules outputs or starts a Rules execution when that path exists, and can execute exact filters or separate rules through read-only Persist integration when that is the available contract. Creates a focused Lexicon branch/PR when a rule-derived request needs a missing ruleset/filter/rule definition, and only mutates source data when the user explicitly asks. Builds a local preview from Persist or Rules-released artifacts fetched through verified AWS access first, except explicit dev/test reports may use a named non-prod profile with clear caveats, then after user approval handles GitHub PRs, AWS deployment, shared Microsoft Azure SSO access, scheduled refresh, and optional catalog publishing. Does not answer current business counts from local workspace files, Athena, cached outputs, notebooks, dashboards, generated reports, user-provided exports, or broad filesystem searches.",
+      "triggers": "/hoothoot Prod-first Persist reporting agent that runs a single Lexicon-rule-aware flow",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/163.png",
+      "iconLabel": "Hoothoot",
+      "skills": [
+        "build-batch-workflows",
+        "build-frontend-backends",
+        "build-lexicon-product",
+        "build-persist-service",
+        "build-rules-product"
+      ],
+      "deps": [],
+      "runtime": "Node · Frontend",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/hoothoot.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/hoothoot.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "klefki",
+      "display": "klefki",
+      "role": "Secure S3 file-sharing portal builder",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Secure S3 file-sharing portal builder. Use proactively when designing, scaffolding, deploying, or debugging an external files portal with Cognito Managed Login, private S3 folder browsing, per-user grants, admin-managed users, custom-domain CloudFront hosting, runtime config, and Figma-driven UI.",
+      "triggers": "/klefki Secure S3 file-sharing portal builder",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/707.png",
+      "iconLabel": "Klefki",
+      "skills": [
+        "apply-engineering-guidelines",
+        "build-frontend-backends",
+        "figma-to-code",
+        "integrate-ci-cd",
+        "responsive-design-tests"
+      ],
+      "deps": [],
+      "runtime": "Node · Frontend",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/klefki.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/klefki.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "linoone",
+      "display": "linoone",
+      "role": "Persist-backed short-URL service specialist",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Persist-backed short-URL service specialist. Use proactively when building, rebuilding, or refactoring a generic link-shortener / click-telemetry service that mints short tokens, stores URL artifacts in a graph persistence API, resolves tokens through graph queries, redirects users, and emits GraphFactProduced click facts to EventBridge.",
+      "triggers": "/linoone Persist-backed short-URL service specialist",
+      "skills": [
+        "manage-short-urls"
+      ],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/linoone.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/linoone.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "lucario",
+      "display": "lucario",
+      "role": "Media-processing operations agent builder",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Media-processing operations agent builder. Use proactively when designing or extending an Asana-triggered agent that starts and monitors M2D runs, answers run-status and failure questions, manages replay and approval actions, verifies Interprose updates, and prepares PR-first M2D config or code changes.",
+      "triggers": "/lucario Media-processing operations agent builder",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/448.png",
+      "iconLabel": "Lucario",
+      "skills": [
+        "apply-engineering-guidelines",
+        "build-ai-agents",
+        "integrate-ci-cd"
+      ],
+      "deps": [
+        "Asana"
+      ],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/lucario.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/lucario.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "machamp",
+      "display": "machamp",
+      "role": "Batch workflow specialist",
+      "status": "Deprecated",
+      "version": "0.15.1",
+      "summary": "Batch workflow specialist. Use proactively when designing or implementing AWS batch workflows, ETL pipelines, Step Functions Distributed Map jobs, or Glue-based processing with cost, throttling, idempotency, and staged test-pipeline requirements.",
+      "triggers": "/machamp Batch workflow specialist",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/068.png",
+      "iconLabel": "Machamp",
+      "skills": [
+        "apply-engineering-guidelines",
+        "build-batch-workflows"
+      ],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/machamp.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/machamp.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "meowth",
+      "display": "meowth",
+      "role": "Cursor spend-limit approval workflow builder",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Cursor spend-limit approval workflow builder. Use proactively when designing or scaffolding an automation that watches Cursor team spend via the Cursor Admin API, opens an Asana approval task when a configurable threshold is crossed, and — once the task is approved — raises the user's spend limit by a configurable increment. Owns the Step Functions state machine (plan → Map over candidate users → `WaitForTaskToken` per user → apply increase → aggregate), the EventBridge Scheduler trigger, the Asana webhook Lambda that completes the task token, the per-environment SSM + Secrets Manager configuration (Asana project, approver, threshold, increment, max increases per cycle), the DynamoDB cycle ledger, and the DEV/PROD CI/CD wiring.",
+      "triggers": "/meowth Cursor spend-limit approval workflow builder",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/052.png",
+      "iconLabel": "Meowth",
+      "skills": [
+        "apply-engineering-guidelines",
+        "build-ai-agents",
+        "build-batch-workflows",
+        "integrate-ci-cd"
+      ],
+      "deps": [
+        "DynamoDB",
+        "Lambda",
+        "Asana"
+      ],
+      "runtime": "AWS Lambda · Bedrock",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/meowth.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/meowth.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "metagross",
+      "display": "metagross",
+      "role": "Fullstack monorepo architect",
+      "status": "Certified",
+      "version": "0.15.1",
+      "summary": "Fullstack monorepo architect. Use proactively when designing or scaffolding Turborepo-based frontend-backend systems with Amplify frontends, tRPC APIs, Lambda, and CDK.",
+      "triggers": "/metagross Fullstack monorepo architect",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/376.png",
+      "iconLabel": "Metagross",
+      "skills": [
+        "apply-engineering-guidelines",
+        "build-frontend-backends"
+      ],
+      "deps": [
+        "Lambda"
+      ],
+      "runtime": "AWS Lambda · Bedrock",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/metagross.md",
+      "source": "team-kit",
+      "certifiedDate": "2026-06-18",
+      "reviewer": "platform-governance",
+      "sourcePath": "agents/metagross.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "noctowl",
+      "display": "noctowl",
+      "role": "General audit anomaly-analysis agent builder",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "General audit anomaly-analysis agent builder. Use proactively when designing, scaffolding, or reviewing an S3-backed audit agent that reads ETL outputs, applies versioned audit profiles, and emits evidence-backed anomaly records for manual review.",
+      "triggers": "/noctowl General audit anomaly-analysis agent builder",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/164.png",
+      "iconLabel": "Noctowl",
+      "skills": [
+        "apply-engineering-guidelines",
+        "atomic-data",
+        "build-ai-agents",
+        "build-batch-workflows",
+        "manage-channel-templates",
+        "manage-communication-activity",
+        "unify-metrics"
+      ],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/noctowl.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/noctowl.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "oracle",
+      "display": "oracle",
+      "role": "Public-data ingestion agent",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Public-data ingestion agent. Discovers, collects, validates, and refreshes public property and business datasets — county appraisal/property records, county permits, Florida Sunbiz corporations, and BBB contractor reputation — into the Elephant Neon query DB by orchestrating the existing elephant-xyz/skills against the oracle-node pipeline. Use when asked to onboard, ingest, or refresh a county's public data (Lee County, FL is the reference), discover data sources for a county, run or monitor an ingestion, or load and reconcile data in the query DB. Does NOT reimplement ingestion — it drives onboard-county and the stage skills. Milestone scope: Lee County across four sources into the query DB; public IPFS publishing, on-chain/blockchain-style indexing, MCP exposure, and NEO rewiring are explicitly out of scope (separate story).",
+      "triggers": "/oracle Public-data ingestion agent",
+      "iconLabel": "🔮",
+      "skills": [
+        "use-elephant-query-db",
+        "use-oracle"
+      ],
+      "deps": [
+        "Neon",
+        "Elephant Query DB",
+        "Sunbiz",
+        "BBB"
+      ],
+      "runtime": "Vercel · Neon",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/oracle.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/oracle.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.5-high"
+    },
+    {
+      "id": "oranguru",
+      "display": "oranguru",
+      "role": "Communication-runtime assembler",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Communication-runtime assembler. Use proactively when composing audience, template, and communication-activity capabilities into deterministic end-to-end channel services, including internal data contracts, candidate generation, scoring, allocation, outputs, and runtime validation.",
+      "triggers": "/oranguru Communication-runtime assembler",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/765.png",
+      "iconLabel": "Oranguru",
+      "skills": [
+        "apply-engineering-guidelines",
+        "assemble-communication-runtime",
+        "build-batch-workflows",
+        "build-solver-services"
+      ],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/oranguru.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/oranguru.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "pelipper",
+      "display": "pelipper",
+      "role": "Asana-integrated or directly callable dataset export agent",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Asana-integrated or directly callable dataset export agent. Use proactively when designing, operating, or extending Pelipper, the agent that turns approved Asana board-scoped requests, interactive agent requests from verified users, or trusted API/CLI requests into company-scoped debt data extracts backed by so-persist. Handles Agency Name or explicit company-scope resolution, requested-field mapping, export/query validation, direct authorized results or S3 presigned export links, status checks, and guardrails against model-authored filters or raw Gremlin.",
+      "triggers": "/pelipper Asana-integrated or directly callable dataset export agent",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/279.png",
+      "iconLabel": "Pelipper",
+      "skills": [
+        "apply-engineering-guidelines",
+        "build-ai-agents"
+      ],
+      "deps": [
+        "Asana"
+      ],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/pelipper.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/pelipper.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.5-high"
+    },
+    {
+      "id": "porygon",
+      "display": "porygon",
+      "role": "Metrics unification specialist",
+      "status": "Registered",
+      "version": "0.15.1",
+      "summary": "Metrics unification specialist. Use proactively when comparing or reconciling metrics across vendors or data sources, especially when definitions, freshness, windows, or mappings may differ.",
+      "triggers": "/porygon Metrics unification specialist",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/137.png",
+      "iconLabel": "Porygon",
+      "skills": [
+        "apply-engineering-guidelines",
+        "atomic-data",
+        "unify-metrics"
+      ],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/porygon.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/porygon.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "regigigas",
+      "display": "regigigas",
+      "role": "SaaS marketplace architect",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "SaaS marketplace architect. Use proactively when designing or building a multi-tenant SaaS distribution platform on AWS where a centralized marketplace account governs per-customer tenant accounts and distributes CloudFormation product bundles (from `cdk synth`) via a registry with component registration, release, rollback, listing, subscribe, and unsubscribe operations. Also covers the four standalone marketplace ecosystem products: tenant domain routing (root domain + per-environment subdomains via Route 53 delegation), tenant account management (customers, environments, API key issuance and rotation), the product deployer (common CDK contract and environment-context injection), and the marketplace puller (tenant-side reconciliation against marketplace desired state).",
+      "triggers": "/regigigas SaaS marketplace architect",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/486.png",
+      "iconLabel": "Regigigas",
+      "skills": [
+        "apply-engineering-guidelines",
+        "build-marketplace-puller",
+        "build-product-deployer",
+        "build-saas-marketplace",
+        "build-tenant-account-manager",
+        "build-tenant-domain-router"
+      ],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/regigigas.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/regigigas.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "smeargle",
+      "display": "smeargle",
+      "role": "Responsive design-test specialist",
+      "status": "Rejected",
+      "version": "0.15.1",
+      "summary": "Responsive design-test specialist. Use proactively when Figma-driven UI updates need Playwright coverage across mobile/tablet/desktop — writing mocked `test/design` specs, real-device `test/browser` specs, or tightening existing design tests after a regression.",
+      "triggers": "/smeargle Responsive design-test specialist",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/235.png",
+      "iconLabel": "Smeargle",
+      "skills": [
+        "figma-to-code",
+        "frontend-bug-fix",
+        "responsive-design-tests"
+      ],
+      "deps": [],
+      "runtime": "Node · Frontend",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/smeargle.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/smeargle.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "sylveon",
+      "display": "sylveon",
+      "role": "Figma-to-code specialist",
+      "status": "Registered",
+      "version": "0.15.1",
+      "summary": "Figma-to-code specialist. Use proactively when translating Figma designs into existing frontend code in `apps/landing_page` or `apps/payment_portal`, preserving business logic and locking in breakpoints.",
+      "triggers": "/sylveon Figma-to-code specialist",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/700.png",
+      "iconLabel": "Sylveon",
+      "skills": [
+        "apply-engineering-guidelines",
+        "figma-to-code",
+        "responsive-design-tests"
+      ],
+      "deps": [],
+      "runtime": "Node · Frontend",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/sylveon.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/sylveon.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "wigglytuff",
+      "display": "wigglytuff",
+      "role": "Template-management specialist",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Template-management specialist. Use proactively when building template repositories, template CRUD workflows, metadata normalization, source-table discovery, one-time/recurring synchronization from operational stores into Git-backed inventories, or Asana-facing template-management agents.",
+      "triggers": "/wigglytuff Template-management specialist",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/040.png",
+      "iconLabel": "Wigglytuff",
+      "skills": [
+        "apply-engineering-guidelines",
+        "manage-channel-templates"
+      ],
+      "deps": [
+        "Asana"
+      ],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/wigglytuff.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/wigglytuff.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    },
+    {
+      "id": "xatu",
+      "display": "xatu",
+      "role": "Audience-selection specialist",
+      "status": "Discovered",
+      "version": "0.15.1",
+      "summary": "Audience-selection specialist. Use proactively when defining filter-to-runtime handoffs, communication segmentation, `input_s3_uri`-style runtime intake contracts, or eligibility boundaries for communication services.",
+      "triggers": "/xatu Audience-selection specialist",
+      "iconUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/178.png",
+      "iconLabel": "Xatu",
+      "skills": [
+        "apply-engineering-guidelines",
+        "select-communication-audience"
+      ],
+      "deps": [],
+      "runtime": "Cursor / Copilot CLI",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/agents/xatu.md",
+      "source": "team-kit",
+      "certifiedDate": null,
+      "reviewer": null,
+      "sourcePath": "agents/xatu.md",
+      "sourceRepo": "https://github.com/soofi-xyz/soofi-xyz-team-kit",
+      "sourceCommit": "18f7d8ee321619649cda80f160ce40b1c4881cd0",
+      "model": "gpt-5.4-high"
+    }
+  ],
+  "skills": [
+    {
+      "id": "apply-engineering-guidelines",
+      "name": "apply-engineering-guidelines",
+      "description": "Apply the repository Golden Path engineering standards. Use when building new services, refactoring existing code, setting up infrastructure, configuring CI/CD, choosing libraries, writing tests, adding observability, or reviewing architecture decisions. Covers tech stack (TypeScript for all services, Python only for PySpark/Glue), AWS/CDK infrastructure, testing strategy (Vitest/Pytest), observability (structured logs, X-Ray), and AI policy. Triggers on: new service, scaffold, refactor, architecture review, tech stack question, infrastructure setup, CDK, testing setup, logging, observability, CI/CD pipeline. Do NOT trigger for general coding questions unrelated to the repository standards.",
+      "path": "skills/apply-engineering-guidelines/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/apply-engineering-guidelines/SKILL.md"
+    },
+    {
+      "id": "assemble-communication-runtime",
+      "name": "assemble-communication-runtime",
+      "description": "Assemble deterministic communication runtimes from reusable audience, template, and activity capabilities. Covers runtime workflow composition, internal data contracts, candidate generation, scoring, allocation, outputs, and runtime validation. Use when building or refactoring communication runtimes, workflow assembly agents, or end-to-end channel services.",
+      "path": "skills/assemble-communication-runtime/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/assemble-communication-runtime/SKILL.md"
+    },
+    {
+      "id": "atomic-data",
+      "name": "atomic-data",
+      "description": "Lexicon-first metrics for contact-center / operational platforms: combine row-level (atomic) facts with vendor daily rollups, Parquet in object storage, CloudWatch publication, and clear lineage in cloudwatch-metrics.json and lexicon.json. Use when designing or implementing atomic vs rollup layers, reconciliation, inbound/outbound classification rules (e.g. LIVEVOX_INBOUND_RULES_JSON), metrics_mapper business keys, Athena reconciliation views, or per-agent daily reporting. Triggers on: atomic metrics, call_fact, vendor rollup, contact center metrics, agent daily metrics, metrics reconciliation, Parquet derived layer, blob vs atomic storage, operational platform metrics.",
+      "path": "skills/atomic-data/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/atomic-data/SKILL.md"
+    },
+    {
+      "id": "babysit-release",
+      "name": "babysit-release",
+      "description": "Use every time the user creates a PR. Also use when the user asks to babysit a PR through merge and production release, watch PR comments and CI/CD until mergeable, monitor the release/prod deployment after merge, or open and babysit a follow-up fix PR for a failed production release.",
+      "path": "skills/babysit-release/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/babysit-release/SKILL.md"
+    },
+    {
+      "id": "build-ai-agents",
+      "name": "build-ai-agents",
+      "description": "Guides creation of AI agents using the rules-agent pattern. Covers Lambda-first agent runtime design, Chat SDK ingress via @soofi-xyz/chat-adapter-asana, Chat SDK state persistence via @soofi-xyz/chat-state-dynamodb, Vercel AI SDK ToolLoopAgent on Bedrock, Bedrock prompt caching, multi-intent request routing, LangSmith telemetry, AgentCore-backed AI conversation memory, tools, deployment, and testing. Triggers on: ai agent, build agent, lambda agent, asana bot, chat sdk, chat-adapter-asana, chat-state-dynamodb, webhook agent, tool loop agent, bedrock prompt cache, langsmith agent, agent memory, bedrock agent, agentcore memory.",
+      "path": "skills/build-ai-agents/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-ai-agents/SKILL.md"
+    },
+    {
+      "id": "build-batch-workflows",
+      "name": "build-batch-workflows",
+      "description": "Guides creation of batch data processing workflows on AWS. Covers input data analysis, choosing Step Functions Distributed Map vs AWS Glue PySpark, testing pipelines, cost controls, throttling, idempotency, and metrics. Triggers on: batch job, batch workflow, data pipeline, data processing job, ETL pipeline, bulk processing, distributed map, glue job.",
+      "path": "skills/build-batch-workflows/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-batch-workflows/SKILL.md"
+    },
+    {
+      "id": "build-bootstrap-cli",
+      "name": "build-bootstrap-cli",
+      "description": "Use when implementing or changing the Bootstrap CLI from its PRD: initial tenant bootstrap, Account bootstrap manifest intake, local first-Deployer install, Marketplace Puller install through Deployer, resume state, and status checks. Read reference/PRD.md first; combine with conkeldurr, regigigas, and apply-engineering-guidelines.",
+      "path": "skills/build-bootstrap-cli/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-bootstrap-cli/SKILL.md"
+    },
+    {
+      "id": "build-build-service",
+      "name": "build-build-service",
+      "description": "Use when implementing or changing the Build service from its PRD: TypeScript CDK source intake, CodeBuild synth and validation, CDK cloud assembly artifacts, artifact provenance, build manifests, and marketplace-ready bundle outputs. Read reference/PRD.md first; combine with conkeldurr, regigigas, machamp, and apply-engineering-guidelines.",
+      "path": "skills/build-build-service/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-build-service/SKILL.md"
+    },
+    {
+      "id": "build-connect-service",
+      "name": "build-connect-service",
+      "description": "Use when implementing or changing the Connect service from its PRD: partner integrations, flow specs, credentials and tokens, webhooks, static IP, SFTP, batch executions, and connector job APIs. Read reference/PRD.md first; combine with conkeldurr, machamp, and apply-engineering-guidelines.",
+      "path": "skills/build-connect-service/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-connect-service/SKILL.md"
+    },
+    {
+      "id": "build-frontend-backends",
+      "name": "build-frontend-backends",
+      "description": "Guides creation of fullstack monorepo apps with Turborepo, AWS Amplify frontends, and tRPC + Lambda backends deployed via CDK. Covers monorepo structure, shared modules, tRPC routers, API Gateway custom domains, and multi-app deployment. Triggers on: frontend backend, fullstack app, trpc, turborepo, monorepo, amplify app, web app backend, api for frontend, multi-app monorepo.",
+      "path": "skills/build-frontend-backends/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-frontend-backends/SKILL.md"
+    },
+    {
+      "id": "build-html-to-pdf",
+      "name": "build-html-to-pdf",
+      "description": "Build HTML-to-PDF generation workflows on AWS Lambda using Playwright and Chromium. Covers typed request contracts, template registries, deterministic HTML rendering, Lambda Chromium packaging, PDF metadata and policy, and verification. Use when building or refactoring server-side PDF generation, print-first HTML templates, Lambda PDF renderers, or Chromium-based document generation. Triggers on: html to pdf, pdf generation, pdf renderer, chromium pdf, playwright pdf, lambda chromium, server-side pdf, print html, document rendering.",
+      "path": "skills/build-html-to-pdf/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-html-to-pdf/SKILL.md"
+    },
+    {
+      "id": "build-inbound-sftp-workflows",
+      "name": "build-inbound-sftp-workflows",
+      "description": "Build inbound SFTP workflows on AWS. Covers gathering partner SFTP inputs, defining the secret and configuration contract, creating AWS infrastructure in Amazon CDK, implementing a Lambda poller, and validating listing and transfer behavior. Use when building an inbound SFTP integration from scratch, adapting an existing inbound flow, or verifying SFTP connection setup.",
+      "path": "skills/build-inbound-sftp-workflows/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-inbound-sftp-workflows/SKILL.md"
+    },
+    {
+      "id": "build-lexicon-product",
+      "name": "build-lexicon-product",
+      "description": "Use when implementing or changing the Lexicon product from its PRD: governed graph vocabulary, ruleset data, metric definitions, source-system mapping artifacts, S3/SSM artifact publication, and the read-only schema browser. Read reference/PRD.md first; combine with conkeldurr, unown, porygon, and apply-engineering-guidelines.",
+      "path": "skills/build-lexicon-product/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-lexicon-product/SKILL.md"
+    },
+    {
+      "id": "build-local-rag-pocs",
+      "name": "build-local-rag-pocs",
+      "description": "Build simple local TypeScript RAG CLIs for agents to query, with libSQL file databases, embedding-backed search, machine-readable commands, and AGENTS.md usage instructions. Use when prototyping local RAG, evaluating corpora, building query-only RAG tools, or teaching agents to use local retrieval from the terminal.",
+      "path": "skills/build-local-rag-pocs/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-local-rag-pocs/SKILL.md"
+    },
+    {
+      "id": "build-marketplace-puller",
+      "name": "build-marketplace-puller",
+      "description": "Use when implementing or changing the Marketplace Puller service from its PRD: tenant-side subscription intake, marketplace webhooks, desired-state reconciliation, dependency subscriptions, drift repair, and deployer handoff. Read reference/PRD.md first; combine with conkeldurr, regigigas, and apply-engineering-guidelines.",
+      "path": "skills/build-marketplace-puller/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-marketplace-puller/SKILL.md"
+    },
+    {
+      "id": "build-persist-service",
+      "name": "build-persist-service",
+      "description": "Use when implementing or changing the Persist service from its PRD: Neptune-backed graph persistence, Persist Blobs, GraphSON ingest, lexicon validation, deterministic IDs, Neptune CSV bulk load, and Gremlin query APIs. Read reference/PRD.md first; combine with conkeldurr, machamp, and apply-engineering-guidelines.",
+      "path": "skills/build-persist-service/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-persist-service/SKILL.md"
+    },
+    {
+      "id": "build-product-deployer",
+      "name": "build-product-deployer",
+      "description": "Use when implementing or changing the Deployer service from its PRD: tenant-local CloudFormation/CDK deployment execution, bundle contracts, regional stack orchestration, Docker image handling, callbacks, and status inspection. Read reference/PRD.md first; combine with conkeldurr, regigigas, and apply-engineering-guidelines.",
+      "path": "skills/build-product-deployer/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-product-deployer/SKILL.md"
+    },
+    {
+      "id": "build-product-service",
+      "name": "build-product-service",
+      "description": "Use when implementing or changing the Product service from its PRD: products, schemas, OpenAPI metadata, product flow templates, template-backed flows, invocations, waterfalls, reports, SMS, email, widgets, blobs, and operational telemetry. Read reference/PRD.md first; combine with conkeldurr, machamp, and apply-engineering-guidelines.",
+      "path": "skills/build-product-service/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-product-service/SKILL.md"
+    },
+    {
+      "id": "build-rag-systems",
+      "name": "build-rag-systems",
+      "description": "Build reusable AWS RAG systems with OpenSearch retrieval, Bedrock embeddings, SAM local Lambda emulation, Docker OpenSearch replay, historical ingestion, and webhook refresh. Use when working with cloud RAG, embeddings, OpenSearch retrieval, moving a local SQLite/libSQL RAG POC to AWS, knowledge bases, schema/header mapping, confidence thresholds, AWS production RAG, or local emulation.",
+      "path": "skills/build-rag-systems/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-rag-systems/SKILL.md"
+    },
+    {
+      "id": "build-rules-product",
+      "name": "build-rules-product",
+      "description": "Use when implementing or changing the Rules product from its PRD: tenant-local batch decisioning, rule contracts, Persist graph reads, callable-population outputs, audit reports, metrics, Glue preparation jobs, and Step Functions workflows. Read reference/PRD.md first; combine with conkeldurr, machamp, and apply-engineering-guidelines.",
+      "path": "skills/build-rules-product/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-rules-product/SKILL.md"
+    },
+    {
+      "id": "build-saas-marketplace",
+      "name": "build-saas-marketplace",
+      "description": "Use when implementing or changing the Marketplace service from its PRD: catalog, component bundles, releases, rollbacks, subscriptions, signed webhooks, review/status flows, and marketplace settings. Read reference/PRD.md first; combine with conkeldurr, regigigas, and apply-engineering-guidelines.",
+      "path": "skills/build-saas-marketplace/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-saas-marketplace/SKILL.md"
+    },
+    {
+      "id": "build-solver-services",
+      "name": "build-solver-services",
+      "description": "Guides creation of optimization services that combine AWS Glue PySpark data preparation with Google OR-Tools solvers. Covers the three-layer architecture (Spark prep → collect bridge → OR-Tools solve → Spark output), solver module design, Glue job wiring, CDK infrastructure, and testing strategy. Triggers on: solver, optimization, OR-Tools, min-cost-flow, assignment problem, scheduling optimizer, PySpark solver, capacity assignment, constraint optimization.",
+      "path": "skills/build-solver-services/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-solver-services/SKILL.md"
+    },
+    {
+      "id": "build-tenant-account-manager",
+      "name": "build-tenant-account-manager",
+      "description": "Use when implementing or changing the Account service from its PRD: customer and organization identity, API keys, AWS sub-account provisioning, DNS configuration, bootstrap manifest, and maintenance access. Read reference/PRD.md first; combine with conkeldurr, regigigas, and apply-engineering-guidelines.",
+      "path": "skills/build-tenant-account-manager/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-tenant-account-manager/SKILL.md"
+    },
+    {
+      "id": "build-tenant-domain-router",
+      "name": "build-tenant-domain-router",
+      "description": "Guides building the Tenant Domain Router — a standalone marketplace product that owns a single root domain (e.g. `provider.xyz`), mints one delegated subdomain per tenant environment (e.g. `customer.provider.xyz`), and exposes a uniform contract for any other product to attach a base path under that subdomain. Covers the marketplace-account parent hosted zone, NS-delegation to per-tenant child hosted zones, ACM certificate strategy, and the API Gateway / CloudFront base-path-mapping interface that other products consume. Triggers on: tenant subdomain, root domain delegation, route53 hosted zone delegation, per-tenant DNS, base path mapping, multi-tenant custom domain, ACM wildcard, marketplace domain product.",
+      "path": "skills/build-tenant-domain-router/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-tenant-domain-router/SKILL.md"
+    },
+    {
+      "id": "build-translate-service",
+      "name": "build-translate-service",
+      "description": "Use when implementing or changing the Translate service from its PRD: registered partner languages, versioned TypeScript mappings, validation, preview, asynchronous translation executions, mapping packs, and execution telemetry. Read reference/PRD.md first; combine with conkeldurr, machamp, and apply-engineering-guidelines.",
+      "path": "skills/build-translate-service/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/build-translate-service/SKILL.md"
+    },
+    {
+      "id": "candidate-agent-qc-validation",
+      "name": "candidate-agent-qc-validation",
+      "description": "Evaluate hiring-candidate-built agents against a user story, acceptance criteria, requirements repo, candidate repo, required integrations, integration tests, and user acceptance outcomes. Use for candidate agent QC, hiring assessment, agent-building validation, or Asana tasks that ask to assess an agent against requirements. Produces a concise evidence-backed verdict, integration setup UX rating, and hiring decision support. Not for designing new agents from scratch — use the appropriate agent-building skill for that.",
+      "path": "skills/candidate-agent-qc-validation/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/candidate-agent-qc-validation/SKILL.md"
+    },
+    {
+      "id": "figma-to-code",
+      "name": "figma-to-code",
+      "description": "Repository-specific frontend engineering workflow to update existing code from Figma designs, preserve logic, and add responsive design test coverage.",
+      "path": "skills/figma-to-code/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/figma-to-code/SKILL.md"
+    },
+    {
+      "id": "frontend-bug-fix",
+      "name": "frontend-bug-fix",
+      "description": "Repository-specific frontend bug triage and fix workflow with design comparison, commit analysis, test updates, and verification.",
+      "path": "skills/frontend-bug-fix/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/frontend-bug-fix/SKILL.md"
+    },
+    {
+      "id": "integrate-ci-cd",
+      "name": "integrate-ci-cd",
+      "description": "Integrate shared CI/CD GitHub Actions workflows into a project. Covers creating caller workflows, justfile with required recipes, and environment variable configuration. Triggers on: CI/CD, continuous integration, continuous deployment, GitHub Actions, pipeline, ci-cd, workflow, deploy pipeline, add CI, add CD, setup CI/CD.",
+      "path": "skills/integrate-ci-cd/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/integrate-ci-cd/SKILL.md"
+    },
+    {
+      "id": "manage-channel-templates",
+      "name": "manage-channel-templates",
+      "description": "Manage channel templates in Git-backed inventories, including template CRUD, metadata normalization, active/inactive state, family/variant structure, and one-time or recurring synchronization from operational stores into GitHub. Use when building or refactoring template-management agents, template repositories, template sync jobs, or channel template workflows for SMS or email.",
+      "path": "skills/manage-channel-templates/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/manage-channel-templates/SKILL.md"
+    },
+    {
+      "id": "manage-communication-activity",
+      "name": "manage-communication-activity",
+      "description": "Manage reusable communication activity loops across provider setup, send-file contracts, routing, execution handoff, delivery updates, response ingestion, and activity-state closure. Use when building provider adapters, communication activity agents, send workflows, delivery feedback processing, or channel operations for SMS or email.",
+      "path": "skills/manage-communication-activity/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/manage-communication-activity/SKILL.md"
+    },
+    {
+      "id": "manage-short-urls",
+      "name": "manage-short-urls",
+      "description": "Design, rebuild, and operate a generic Persist-backed short-URL service. Covers token issuance, GraphSON v3 persistence, graph-query resolution, public redirects, GraphFactProduced click facts on EventBridge, SQS DLQ replay, custom-domain discovery, and forbidden legacy patterns such as DynamoDB token tables, Snowflake dependencies, webhooks, metadata blobs, and business logic in the resolver.",
+      "path": "skills/manage-short-urls/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/manage-short-urls/SKILL.md"
+    },
+    {
+      "id": "responsive-design-tests",
+      "name": "responsive-design-tests",
+      "description": "Writes Playwright design tests for Figma-driven responsive UI updates. Use when implementing design changes from Figma, adding breakpoint coverage, verifying responsive layouts, asking which page changed, or when the user asks for design tests across mobile, tablet, and desktop.",
+      "path": "skills/responsive-design-tests/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/responsive-design-tests/SKILL.md"
+    },
+    {
+      "id": "select-communication-audience",
+      "name": "select-communication-audience",
+      "description": "Define reusable audience-selection and eligibility-handoff patterns for communication services. Covers upstream filter boundaries, runtime intake contracts, external input schemas, and how eligible populations are packaged for downstream optimization. Use when building audience-selection agents, filter-to-runtime handoffs, communication segmentation, or `input_s3_uri`-style intake contracts.",
+      "path": "skills/select-communication-audience/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/select-communication-audience/SKILL.md"
+    },
+    {
+      "id": "unify-metrics",
+      "name": "unify-metrics",
+      "description": "Design and implement lexicon-first metrics workflows across the repositories, including candidate metric discovery, snapshot semantics, dashboard delivery, and PR follow-up. Use when defining a new metric, mapping vendor metrics to canonical names, extending CloudWatch metric registration, integrating a metric into a pipeline, adding dashboard widgets, or preparing coordinated lexicon/pipeline/dashboard delivery. Triggers on: new metric, metrics workflow, cloudwatch metric, vendor metric mapping, metric pipeline, dashboard widget, lexicon metric, livevox metric, business metric.",
+      "path": "skills/unify-metrics/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/unify-metrics/SKILL.md"
+    },
+    {
+      "id": "use-eevee",
+      "name": "use-eevee",
+      "description": "Operate the Eevee editorial agent from Cursor: retrieve from the live Eevee RAG via the agent-eevee retrieve CLI, then draft pitches/propositions/website copy in Eevee's voice using Eevee's prompts. Triggers on: eevee, editorial draft, pitch, proposition, capability deck, white paper, rfp response, website copy, founder content.",
+      "path": "skills/use-eevee/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/use-eevee/SKILL.md"
+    },
+    {
+      "id": "use-elephant-query-db",
+      "name": "use-elephant-query-db",
+      "description": "User guide for consuming the Vercel Neon Postgres database named elephant-query-db: Vercel environment setup, schema imports from @elephant-xyz/query-db, and exact TypeScript/Drizzle query code for appraisal parcels/properties, Accela permits, BBB contractor reputation/quality scores, Sunbiz companies, and addresses. Use when building Vercel apps, route handlers, dashboards, reports, or agents that query Elephant oracle data. Not for changing loaders or schema migrations.",
+      "path": "skills/use-elephant-query-db/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/use-elephant-query-db/SKILL.md"
+    },
+    {
+      "id": "use-oracle",
+      "name": "use-oracle",
+      "description": "Operating guide for the Oracle public-data ingestion agent: install and drive the elephant-xyz/skills (onboard-county + stage skills) against the oracle-node pipeline to discover, ingest, validate, and refresh county property/permit plus Sunbiz/BBB data into the Neon query DB. Covers the oracle-node checkout layout, sibling repos, AWS_PROFILE/AWS_REGION setup, the stage-skill map, and the milestone scope boundary (Lee County, four sources, query DB; IPFS/indexing/MCP/NEO out). Triggers on: oracle, onboard county, ingest county data, refresh Lee County, appraisal/permit/Sunbiz/BBB ingestion, oracle-node, county-discovery.",
+      "path": "skills/use-oracle/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/use-oracle/SKILL.md"
+    },
+    {
+      "id": "use-translate-service",
+      "name": "use-translate-service",
+      "description": "User guide for calling a deployed Translate service — what a language and a runtime mapping are, the exact JSON shapes required to register them, the input shape Translate expects, and the request/response shape for validate, preview, and asynchronous executions. Use when explaining or making calls to /translate/* as a consumer. Not for changing the Translate codebase — use build-translate-service for that.",
+      "path": "skills/use-translate-service/SKILL.md",
+      "docs": "https://github.com/soofi-xyz/soofi-xyz-team-kit/blob/main/skills/use-translate-service/SKILL.md"
+    }
+  ],
+  "elephantSkills": [
+    {
+      "id": "bbb-harvest",
+      "name": "bbb-harvest",
+      "description": "Harvest BBB (Better Business Bureau) business profiles by category for contractor reputation and quality enrichment in the elephant query DB. Use when asked to collect BBB profiles, contractor reputation data, or refresh bbb_* tables.",
+      "path": "skills/bbb-harvest/SKILL.md",
+      "docs": "https://github.com/elephant-xyz/skills/blob/main/skills/bbb-harvest/SKILL.md"
+    },
+    {
+      "id": "bootstrap-oracle-infra",
+      "name": "bootstrap-oracle-infra",
+      "description": "Verify and bootstrap the AWS infrastructure required by the oracle-node county ingestion pipeline - main stack, permit-harvest stack, seeds bucket, secrets, and Neon query DB. Use when starting county onboarding, when a deploy/enqueue script fails with missing stack outputs or AccessDenied, or when setting up oracle-node in a fresh AWS account.",
+      "path": "skills/bootstrap-oracle-infra/SKILL.md",
+      "docs": "https://github.com/elephant-xyz/skills/blob/main/skills/bootstrap-oracle-infra/SKILL.md"
+    },
+    {
+      "id": "county-appraisal-onboarding",
+      "name": "county-appraisal-onboarding",
+      "description": "Wire a new county's appraisal scraping into oracle-node - browser flow JSON, per-county prepare queue, per-county prepare flags, and transform scripts from Counties-trasform-scripts. Use when onboarding a county's property appraiser site, creating browser flows, or when prepare fails for a specific county.",
+      "path": "skills/county-appraisal-onboarding/SKILL.md",
+      "docs": "https://github.com/elephant-xyz/skills/blob/main/skills/county-appraisal-onboarding/SKILL.md"
+    },
+    {
+      "id": "county-discovery",
+      "name": "county-discovery",
+      "description": "Research a new US county before onboarding it to the oracle-node ingestion pipeline - appraiser portal, permit portal vendor, parcel id format, bulk data sources, and anti-bot posture. Use when asked to onboard, evaluate, or scope a new county, or when planning appraisal/permit scraping for a county not yet ingested.",
+      "path": "skills/county-discovery/SKILL.md",
+      "docs": "https://github.com/elephant-xyz/skills/blob/main/skills/county-discovery/SKILL.md"
+    },
+    {
+      "id": "county-ingest-run",
+      "name": "county-ingest-run",
+      "description": "Deploy and run the end-to-end property-first ingestion for an onboarded county - pilot batch first, then the full backpressure-aware seed-feeder run with concurrency ramp-up. Use when starting, scaling, resuming, or wrapping up a county ingestion run on AWS.",
+      "path": "skills/county-ingest-run/SKILL.md",
+      "docs": "https://github.com/elephant-xyz/skills/blob/main/skills/county-ingest-run/SKILL.md"
+    },
+    {
+      "id": "county-permit-adapter",
+      "name": "county-permit-adapter",
+      "description": "Build a new county's permit-portal harvester for the oracle-node permit-harvest worker, by adapting the Lee Accela adapter or writing a new vendor module. Use when onboarding a county's permit portal, adding permit message types, or debugging per-parcel permit harvest for a county.",
+      "path": "skills/county-permit-adapter/SKILL.md",
+      "docs": "https://github.com/elephant-xyz/skills/blob/main/skills/county-permit-adapter/SKILL.md"
+    },
+    {
+      "id": "county-seed-data",
+      "name": "county-seed-data",
+      "description": "Produce and stage the parcel seed CSV that drives oracle-node county ingestion, at s3://counties-seeds/<county>.csv. Use when onboarding a county, when the seed feeder reports missing or malformed seed data, or when asked where parcel lists come from.",
+      "path": "skills/county-seed-data/SKILL.md",
+      "docs": "https://github.com/elephant-xyz/skills/blob/main/skills/county-seed-data/SKILL.md"
+    },
+    {
+      "id": "monitoring-county-ingestion",
+      "name": "monitoring-county-ingestion",
+      "description": "Monitor oracle-node county ingestion - SQS queue health, event-source state, Lambda concurrency, S3 artifact counts, Neon row counts, and ETAs - for any county plus Sunbiz transforms. Use when asked for ingestion status, ETA, backlog, permit harvest progress, appraisal queue progress, or why ingestion stalled.",
+      "path": "skills/monitoring-county-ingestion/SKILL.md",
+      "docs": "https://github.com/elephant-xyz/skills/blob/main/skills/monitoring-county-ingestion/SKILL.md"
+    },
+    {
+      "id": "onboard-county",
+      "name": "onboard-county",
+      "description": "Orchestrate end-to-end onboarding of a new US county into the elephant oracle-node ingestion pipeline - starting with a mandatory operator intake (AWS profile, seed data, existing scripts, sources), then sequencing discovery, seed data, appraisal, transform validation, permit adapter, run, and enrichment stages. Use when asked to onboard, ingest, or \"do the same as Lee County\" for a new county, or when unsure which county skill applies.",
+      "path": "skills/onboard-county/SKILL.md",
+      "docs": "https://github.com/elephant-xyz/skills/blob/main/skills/onboard-county/SKILL.md"
+    },
+    {
+      "id": "query-db-loading-matching",
+      "name": "query-db-loading-matching",
+      "description": "Load county artifacts (appraisal, permits, Sunbiz, BBB) into the Neon Postgres query DB and cross-match records by parcel id and normalized address hash. Use when loading transformed data into Neon, reconciling row counts, linking permits or companies to parcels, or debugging missing query-db data.",
+      "path": "skills/query-db-loading-matching/SKILL.md",
+      "docs": "https://github.com/elephant-xyz/skills/blob/main/skills/query-db-loading-matching/SKILL.md"
+    },
+    {
+      "id": "sunbiz-corporate-ingest",
+      "name": "sunbiz-corporate-ingest",
+      "description": "Ingest Florida Sunbiz corporate registration bulk data scoped to a county - bulk download, ZIP-prefix extraction via the permit-harvest worker, and lexicon transform. Use when onboarding a Florida county's business-registration data, refreshing quarterly Sunbiz data, or matching corporate entities to county addresses.",
+      "path": "skills/sunbiz-corporate-ingest/SKILL.md",
+      "docs": "https://github.com/elephant-xyz/skills/blob/main/skills/sunbiz-corporate-ingest/SKILL.md"
+    },
+    {
+      "id": "transform-v2-builder",
+      "name": "transform-v2-builder",
+      "description": "Help Elephant CLI users build, run, and debug transform v2 handler packages. Use when authoring or repairing county `handler.js` transform packages, using `elephant-cli transform --transform-version 2`, inspecting Browser Flow v2 captures, packaging `--transform-zip`, writing `writeJson`/`writeRelationship` calls, or validating transformed output.",
+      "path": "skills/transform-v2-builder/SKILL.md",
+      "docs": "https://github.com/elephant-xyz/skills/blob/main/skills/transform-v2-builder/SKILL.md"
+    },
+    {
+      "id": "validate-county-transform",
+      "name": "validate-county-transform",
+      "description": "Prove a county's transform scripts extract 100% of the data available on the appraiser site across property-type variability, by diffing extracted fields against raw captures. Use before scaling any county ingestion run, after editing transform scripts, or when asked whether transform coverage is complete for a county.",
+      "path": "skills/validate-county-transform/SKILL.md",
+      "docs": "https://github.com/elephant-xyz/skills/blob/main/skills/validate-county-transform/SKILL.md"
+    }
+  ]
+}

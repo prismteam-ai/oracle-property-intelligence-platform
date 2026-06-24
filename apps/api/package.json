@@ -1,0 +1,27 @@
+{
+  "name": "@oracle-command-center/api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./src/router.ts",
+  "module": "./src/router.ts",
+  "types": "./src/router.ts",
+  "exports": {
+    ".": "./src/router.ts"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit --pretty false"
+  },
+  "dependencies": {
+    "@oracle-command-center/agent-registry": "workspace:*",
+    "@oracle-command-center/domain": "workspace:*",
+    "@oracle-command-center/evidence-ledger": "workspace:*",
+    "@oracle-command-center/fixtures": "workspace:*",
+    "@oracle-command-center/oracle-data-source": "workspace:*",
+    "@oracle-command-center/rag": "workspace:*",
+    "@oracle-command-center/retrieval": "workspace:*",
+    "@trpc/server": "^10.45.2",
+    "zod": "^3.23.8"
+  }
+}

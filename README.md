@@ -1,127 +1,237 @@
-# Oracle Property Intelligence Platform
-Oracle Property Intelligence Platform (RAG + Exploration UI)
+# Oracle Command Center
 
-## Context
+## Assignment Evaluation Path
 
-Oracle has been created to discover, collect, and refresh public datasets from Lee County property records, permit systems, Sunbiz business registrations, BBB business information, and other public sources. The completed Oracle ingestion work establishes the foundation for a broader open-data architecture that will ultimately support MCP access, agent consumption, and NEO integration.
+This PR completes the Oracle Property Intelligence Platform user story. Evaluate the hosted runtime from the `Intelligence` workflow:
 
-This milestone extends the existing Oracle data collection effort by fully loading the available datasets into a unified intelligence platform, extending the data model using the Elephant Lexicon, storing the resulting knowledge in a RAG-accessible repository, and exposing the data through exploration interfaces focused on properties, tenants, businesses, and contractors.
+- Runtime: https://oracle-command-center-nine.vercel.app/
+- Demo: https://www.loom.com/share/b65506e580eb4101a812a42f9800a5f2
+- Credentials: none required; the runtime is public.
+- Original completed source commit: https://github.com/gillworks/prismteam/commit/db7e250cf139f47a3ee29ec2ad30745f1b92c92a
+- Original completion timestamp: 2026-06-19 04:27:53 UTC
 
-## Description
+The commits in this PR are administrative packaging after Sean's follow-up request for PR-based submission. The original assignment prompt is preserved in `ASSIGNMENT.md`.
 
-Create a Property Intelligence Platform that ingests the Oracle-collected datasets, extends the canonical entity model using the Elephant Lexicon, stores all entities and relationships in a RAG-backed knowledge layer, and provides exploration interfaces that enable users and future agents to discover opportunities, risks, ownership patterns, contractor performance issues, permit activity, business relationships, and property improvement signals across the complete dataset.
+Integrated PRISM take-home build combining:
 
-## Acceptance Criteria
-- Extend the Oracle data model using the Elephant Lexicon as the canonical schema.
-- Define and document canonical entities for Properties, Owners, Tenants, Businesses, Contractors, Permits, Addresses, Parcels, Projects, Reviews, Complaints, and Public Records.
-- Define and document relationships between all canonical entities.
-- Load all available Lee County property records into the platform.
-- Load all available Lee County permit records into the platform.
-- Load all available Sunbiz business records collected by Oracle.
-- Load all available BBB records collected by Oracle.
-- Load all available tenant and occupancy records available through Oracle sources.
-- Normalize and reconcile entities across all source systems.
-- Create durable entity identifiers across datasets.
-- Preserve source provenance for every entity and relationship.
-- Preserve source URLs, refresh timestamps, collection timestamps, and lineage metadata.
-- Store all normalized data within a centralized RAG-accessible knowledge repository.
-- Index all records for semantic retrieval and structured querying.
-- Support natural-language questions against the knowledge layer.
-- Return source-backed responses with supporting citations and provenance.
-- Provide a Property View.
-- Display ownership history within the Property View.
-- Display permit history within the Property View.
-- Display open permits within the Property View.
-- Display contractor activity within the Property View.
-- Display business occupancy within the Property View.
-- Display tenant activity within the Property View.
-- Display major improvement activity within the Property View.
-- Provide a Tenant View.
-- Display tenant occupancy history.
-- Display tenant-to-property relationships.
-- Display tenant-associated businesses.
-- Display tenant-associated permits and projects.
-- Provide a Business View.
-- Display business registrations.
-- Display business ownership information.
-- Display business locations.
-- Display related properties.
-- Display related permits and projects.
-- Provide a Contractor View.
-- Display contractor project history.
-- Display contractor permit history.
-- Display contractor BBB ratings.
-- Display contractor BBB complaints.
-- Display contractor review summaries.
-- Display contractor-to-property relationships.
-- Identify properties with more than one currently open permit.
-- Identify properties with multiple open permits across different permit categories.
-- Identify properties that have undergone major renovations.
-- Classify major renovation activity including roofing, electrical, concrete, structural, plumbing, and HVAC work.
-- Calculate property improvement indicators based on permit history and project activity.
-- Surface contractors associated with major renovation projects.
-- Surface contractors with negative BBB ratings.
-- Surface contractors with complaint histories.
-- Surface contractors with poor review scores.
-- Correlate contractor performance signals with completed projects.
-- Support filtering by county, municipality, permit type, contractor, property class, business type, and date range.
-- Support semantic exploration across all entity types.
-- Support future MCP exposure without requiring data model changes.
-- Preserve compatibility with future NEO integration.
-- Exclude public-storage publishing, blockchain-style indexing, MCP implementation, NEO rewiring, and Elephant.xyz UI implementation from this milestone.
+- Oracle Property Intelligence
+- Agent Network registration and certification
+- Certified-agent marketplace behavior
+- Evidence and provenance ledger
+- Fixture-first demo mode with live Vercel Postgres/Neon readiness
 
-## Demo Requirements
-- Deliver a live demonstration using the fully loaded Oracle dataset.
-- Demonstrate Property View exploration using real records.
-- Demonstrate Tenant View exploration using real records.
-- Demonstrate Business View exploration using real records.
-- Demonstrate Contractor View exploration using real records.
-- Demonstrate semantic search against the RAG knowledge layer.
-- Demonstrate source-backed responses with provenance and citations.
+The app is designed to run immediately with deterministic Lee County-style fixtures, then switch to a live database on Vercel when `DATABASE_URL` and the Soofi/Elephant query contract are available.
 
-## Required Demo Inquiries
-- Show all properties with more than one open permit.
-- Show all properties with open roofing permits.
-- Show all properties with open electrical permits.
-- Show all properties that underwent major concrete work.
-- Show all properties that underwent major roof replacements.
-- Show all properties that underwent major electrical upgrades.
-- Show all properties with the highest permit activity during the last five years.
-- Show all properties with significant renovation activity.
-- Show all contractors performing roofing work in Lee County.
-- Show all contractors performing electrical work in Lee County.
-- Show contractors with negative BBB ratings.
-- Show contractors with complaint histories.
-- Show projects completed by contractors with negative BBB ratings or complaint histories.
-- Show businesses operating across multiple properties.
-- Show owners associated with multiple properties.
-- Show tenants operating across multiple locations.
-- Show properties with both ownership changes and active permit activity.
-- Show properties with active permit activity and business turnover.
-- Show neighborhoods with increasing permit activity.
-- Show neighborhoods with the highest concentration of major renovations.
-- Show the most active contractors by project count.
-- Show the most active businesses by property footprint.
-- Show relationships between a selected property, contractor, business, tenant, and owner.
-- Answer natural-language questions using the RAG layer and return supporting evidence.
+## Repository Scope
 
-## Stretch Demo Inquiries
-- Which properties appear likely to be undergoing redevelopment?
-- Which properties show signs of value-add investment activity?
-- Which contractors are associated with the highest number of complaint-linked projects?
-- Which business owners control the largest property footprint?
-- Which permit patterns typically precede business turnover?
-- Which neighborhoods are showing the strongest redevelopment signals?
-- Which properties are likely candidates for acquisition based on permit, ownership, and occupancy signals?
-- Which contractors consistently perform major renovations without negative BBB indicators?
-- Which businesses have expanded into multiple locations over time?
-- Which properties exhibit unusual permit activity compared to nearby properties?
+This is a standalone submission repo. It is not a fork, submodule, workspace package, or deployment of any Soofi, Elephant, or PRISM repository. External repositories are referenced by explicit GitHub URLs and pinned snapshot metadata only.
 
-## Definition of Done
+## External References
 
-This milestone is considered complete only when the full Oracle dataset is loaded, reconciled into the Elephant Lexicon model, indexed within the RAG layer, exposed through the exploration UI, and demonstrated through the required inquiry workflows above.
+Assignment prompts:
 
-## Reference
-- [Soofi XYZ Team Kit](https://github.com/soofi-xyz/soofi-xyz-team-kit)
-- [elephant query db usage skill - Soofi XYZ Team Kit](https://github.com/soofi-xyz/soofi-xyz-team-kit/pull/54)
-- [Elephant Oracle Skills](https://github.com/elephant-xyz/skills)
+- Oracle Property Intelligence Platform: https://github.com/prismteam-ai/Oracle-Property-Intelligence-Platform
+- Agent Network Registration & Certification Platform: https://github.com/prismteam-ai/agent-network-registration-and-certification-platform
+
+Source and contract references:
+
+- Soofi team kit: https://github.com/soofi-xyz/soofi-xyz-team-kit
+- Soofi PR #54 `use-elephant-query-db`: https://github.com/soofi-xyz/soofi-xyz-team-kit/pull/54
+- Elephant skills: https://github.com/elephant-xyz/skills
+
+The app does not require Soofi production infrastructure. Your Vercel deployment can use your own Vercel Postgres/Neon database as long as it exposes the PR #54-compatible query contract.
+
+## What This Demonstrates
+
+- One cohesive command center instead of two disconnected portals.
+- All 23 required Oracle demo inquiries in a drawer that launches the same RAG workflow as typed search.
+- Server-side natural-language RAG through Neon `pgvector`, OpenAI embeddings, and OpenAI LLM synthesis.
+- Source-backed Soofi team-kit discovery from parsed agents and skills.
+- Visible Soofi network lineage for `arceus`, `oracle`, `espeon`, `alakazam`, `metagross`, and the Oracle query DB skills.
+- Agent lifecycle: Discovered, Registered, In Review, Certified, Rejected, Deprecated, Suspended.
+- Manual non-GitHub agent registration.
+- Marketplace gating so only Certified agents are published.
+- Evidence runs that record query, agent, evaluator, certifier, citations, source systems, and result keys.
+- Server-only live data adapter for the PR #54 `use-elephant-query-db` surface.
+
+## Quick Start
+
+```bash
+pnpm install
+pnpm start
+```
+
+Open:
+
+```text
+http://127.0.0.1:4174/
+```
+
+If port `4174` is busy, Vite will print the next available localhost URL.
+
+## Verify
+
+```bash
+pnpm test
+```
+
+This runs:
+
+```bash
+pnpm verify
+pnpm typecheck
+pnpm build
+```
+
+`pnpm verify` checks the acceptance-critical surface: fixture corpus size, all 23 required inquiries, Soofi/Elephant source snapshot coverage, PR #54 coverage, registry lifecycle, marketplace gating, manual registration, evidence ledger, Vercel metadata, and the live DB adapter contract.
+
+## Vercel Deployment
+
+The repo includes `vercel.json` for deploying the Vite app from `apps/web`.
+
+Expected Vercel settings:
+
+```text
+Install Command: pnpm install --frozen-lockfile
+Build Command: pnpm build
+Output Directory: apps/web/dist
+```
+
+The browser app never receives database credentials. It boots from the static fixture client, then calls:
+
+```text
+/api/command-center
+```
+
+That Vercel function decides whether to use the live database or fixture fallback.
+
+## Local Environment Files
+
+Use `.env.example` as the template for local credentials:
+
+```bash
+cp .env.example .env
+```
+
+Then edit `.env` with your Neon `DATABASE_URL` and `OPENAI_API_KEY`. The `.env` file is ignored by git and should not be committed.
+
+Node scripts do not load `.env` automatically. Either prefix variables inline, or run credentialed scripts through `dotenv-cli`:
+
+```bash
+pnpm dlx dotenv-cli -e .env -- pnpm db:seed:reset
+pnpm dlx dotenv-cli -e .env -- pnpm verify:live:required
+pnpm dlx dotenv-cli -e .env -- pnpm rag:seed
+pnpm dlx dotenv-cli -e .env -- pnpm rag:verify:required
+```
+
+## Live Database Mode
+
+No Soofi production credentials are required. To test with your own Vercel Postgres/Neon database, set:
+
+```bash
+ORACLE_DATA_SOURCE=elephant-query-db
+DATABASE_URL="postgres://USER:PASSWORD@HOST/DATABASE?sslmode=require"
+```
+
+Then seed and verify your database:
+
+```bash
+pnpm dlx dotenv-cli -e .env -- pnpm db:seed:reset
+pnpm dlx dotenv-cli -e .env -- pnpm verify:live:required
+```
+
+`pnpm db:seed:reset` creates the PR #54-compatible tables and views, then loads the demo corpus.
+
+`pnpm verify:live:required` validates:
+
+- Required views: `property_profile_view`, `permit_search_view`, `company_profile_view`, `address_profile_view`
+- Required logical tables, including properties, parcels, ownerships, improvements, business registrations, BBB profiles, complaints, reviews, contractor quality scores, and addresses
+- Required column names and compatible Postgres type families
+- Non-empty property and permit row counts
+- `source_payload jsonb` lineage columns on evidence-bearing tables
+
+Without credentials, this command skips cleanly:
+
+```bash
+pnpm verify:live
+```
+
+If the live DB contract fails at runtime, the server reports the fallback reason and the UI continues in fixture mode instead of breaking.
+
+## Natural-Language RAG Mode
+
+Free-text natural-language search is server-only. It does not fall back to browser regex or keyword scoring. Configure a Neon/Postgres database with `pgvector` plus OpenAI credentials:
+
+```bash
+DATABASE_URL="postgres://USER:PASSWORD@HOST/DATABASE?sslmode=require"
+OPENAI_API_KEY="sk-..."
+ORACLE_RAG_ANSWER_MODEL="gpt-5.4-mini" # optional
+ORACLE_RAG_EMBEDDING_MODEL="text-embedding-3-small" # optional
+```
+
+Seed and verify the vector index:
+
+```bash
+pnpm dlx dotenv-cli -e .env -- pnpm rag:seed
+pnpm dlx dotenv-cli -e .env -- pnpm rag:verify:required
+```
+
+Without credentials, `pnpm rag:verify` skips cleanly. Structured filters and the initial fixture-backed view still work locally; typed RAG and required-prompt drawer launches require the server-side vector/LLM path for full answers.
+
+## Demo Flow
+
+1. Open `Intelligence`.
+2. Open the Required Demo Inquiries drawer and launch prompts such as `Show all properties with open roofing permits`.
+3. Ask free-text RAG questions such as `Which properties appear likely to be undergoing redevelopment?`.
+4. Open result cards to inspect citations, entity details, and relationship lineage.
+5. Open `Evidence` to see provisional runs while `oracle` is still `Discovered`.
+6. Open `Registry`, select `oracle`, then move it through registration, review, and certification.
+7. Use `Register external` to open the prefilled manual-registration form, review/edit owner, capabilities, inputs, outputs, tools, and data sources, then submit a non-GitHub agent.
+8. Certify the external agent, then open `Marketplace` to confirm only Certified agents are published.
+9. Run a new inquiry and return to `Evidence`; new runs are stamped with the certified state while older provisional runs remain unchanged.
+
+## Project Structure
+
+```text
+apps/web                         React/Vite command center UI
+apps/api                         tRPC routers and command-center HTTP runtime
+api/command-center.ts            Vercel serverless entrypoint
+packages/domain                  Shared entities, lifecycle states, evidence types
+packages/fixtures                Deterministic Oracle fixture corpus
+packages/retrieval               Required inquiries, stretch routing, detail views
+packages/rag                     Server-only Neon pgvector and OpenAI RAG runtime
+packages/agent-registry          Discovery, lifecycle, certification, marketplace gates
+packages/evidence-ledger         Run provenance and metrics
+packages/api-client              Static browser fallback client
+packages/oracle-data-source      Server-only fixture/live DB adapter
+packages/team-kit-source         Parsed Soofi and Elephant source snapshot
+scripts/verify.js                Acceptance verifier
+scripts/verify-live-query-db.js  Credentialed DB contract verifier
+scripts/seed-contract-db.js      Vercel Postgres/Neon bootstrapper
+scripts/seed-rag-index.js        Neon pgvector RAG index bootstrapper
+scripts/verify-rag.js            Optional credentialed RAG verifier
+```
+
+## Reference Coverage
+
+The checked-in source snapshot currently covers:
+
+- 30 Soofi team-kit agents
+- 39 Soofi team-kit skills
+- Soofi PR #54 `use-elephant-query-db`
+- 13 Elephant Oracle skills
+
+To refresh snapshots after cloning newer upstream repos:
+
+```bash
+SOOFI_TEAM_KIT_PATH=/path/to/soofi-xyz-team-kit \
+ELEPHANT_SKILLS_PATH=/path/to/elephant-xyz-skills \
+node scripts/sync-reference-snapshots.js
+```
+
+## Important Files
+
+- `ARCHITECTURE.md` explains fixture/live boundaries, evidence, registry state, and adapter swaps.
+- `LEXICON.md` documents canonical Oracle entities and relationships.
+- `AGENTS.md` captures repo operating notes for future agent work.
+- `packages/oracle-data-source/README.md` documents the live DB contract in more detail.

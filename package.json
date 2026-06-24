@@ -1,0 +1,29 @@
+{
+  "name": "oracle-command-center",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Integrated Oracle Property Intelligence and Agent Network certification prototype.",
+  "packageManager": "pnpm@9.15.9",
+  "scripts": {
+    "dev": "pnpm --filter @oracle-command-center/web dev --host 127.0.0.1 --port 4174",
+    "start": "pnpm dev",
+    "legacy:start": "python3 -m http.server 4173",
+    "verify": "node scripts/verify.js",
+    "verify:live": "node scripts/verify-live-query-db.js",
+    "verify:live:required": "node scripts/verify-live-query-db.js --required",
+    "rag:seed": "node scripts/seed-rag-index.js",
+    "rag:seed:reset": "node scripts/seed-rag-index.js --reset",
+    "rag:verify": "node scripts/verify-rag.js",
+    "rag:verify:required": "node scripts/verify-rag.js --required",
+    "db:seed": "node scripts/seed-contract-db.js",
+    "db:seed:reset": "node scripts/seed-contract-db.js --reset",
+    "lint": "pnpm typecheck",
+    "typecheck": "turbo run typecheck",
+    "build": "turbo run build",
+    "test": "pnpm verify && pnpm typecheck && pnpm build"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.3"
+  }
+}
