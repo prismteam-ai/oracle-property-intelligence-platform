@@ -1,0 +1,4 @@
+fastembed
+fastapi
+uvicorn[standard]
+pydantic
