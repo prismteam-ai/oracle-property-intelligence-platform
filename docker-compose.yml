@@ -1,0 +1,72 @@
+# Oracle Property Intelligence Platform — one-command local stack.
+#   docker compose up
+# Brings up: pgvector Postgres, the offline embeddings sidecar, a one-shot
+# seeder (push schema + load synthetic data + embed), then the Next.js web app.
+# Each stage is gated on healthchecks.
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: oracle
+      POSTGRES_PASSWORD: oracle
+      POSTGRES_DB: oracle
+    ports:
+      - "5432:5432"
+    volumes:
+      - oracle_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U oracle -d oracle"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  embeddings:
+    build:
+      context: ./embeddings
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  seeder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["sh", "-c", "pnpm db:migrate && pnpm db:push && pnpm db:seed && pnpm db:embed"]
+    environment:
+      DATA_SOURCE: local
+      DATABASE_URL: postgres://oracle:oracle@db:5432/oracle
+      EMBEDDING_PROVIDER: local
+      EMBEDDINGS_URL: http://embeddings:8080
+    depends_on:
+      db:
+        condition: service_healthy
+      embeddings:
+        condition: service_healthy
+    restart: "no"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["pnpm", "start"]
+    environment:
+      DATA_SOURCE: local
+      DATABASE_URL: postgres://oracle:oracle@db:5432/oracle
+      EMBEDDING_PROVIDER: local
+      EMBEDDINGS_URL: http://embeddings:8080
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+      seeder:
+        condition: service_completed_successfully
+
+volumes:
+  oracle_pgdata:

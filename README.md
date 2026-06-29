@@ -11,6 +11,35 @@ This milestone extends the existing Oracle data collection effort by fully loadi
 
 Create a Property Intelligence Platform that ingests the Oracle-collected datasets, extends the canonical entity model using the Elephant Lexicon, stores all entities and relationships in a RAG-backed knowledge layer, and provides exploration interfaces that enable users and future agents to discover opportunities, risks, ownership patterns, contractor performance issues, permit activity, business relationships, and property improvement signals across the complete dataset.
 
+## Data model & data source
+
+The schema faithfully mirrors the **@elephant-xyz/query-db Lexicon** — every table, column, relationship, and provenance field (`source_system`, `source_record_key`, `source_record_hash`, `source_artifact_uri`, `loaded_at`, plus the additive `public_records` lineage ledger) matches the canonical lexicon one-to-one. The canonical `@elephant-xyz/query-db` package and its Neon database are **access-gated** (a private team resource), so the gated `DATABASE_URL` is not available to this public deployment.
+
+Rather than ship an empty demo, the platform runs on a lexicon-accurate synthetic dataset at production scale. The `DATA_SOURCE` env var is the single swap seam (`src/server/provider-kind.ts` resolves the provider; `src/server/pg.ts` selects the driver):
+
+| `DATA_SOURCE` | Store | Requirements |
+| --- | --- | --- |
+| `memory` (default) | DB-free synthetic graph | none — no Postgres, docker, or credentials |
+| `local` | synthetic dataset in Postgres 16 + pgvector | `DATABASE_URL` + `pnpm db:setup` |
+| `neon` | gated `@elephant-xyz/query-db` on Neon | `DATA_SOURCE=neon` + the gated `DATABASE_URL` |
+
+Switching to the real data is **one environment change with no code change**: set `DATA_SOURCE=neon` and point `DATABASE_URL` at the gated Neon database. The same kit-named queries, the same RAG pipeline, and the same UI run unchanged against either store.
+
+## Run locally
+
+A clean checkout serves the full exploration UI and RAG demo with no database, docker, model download, or API key:
+
+```sh
+git clone <repo> && cd oracle-property-intelligence-platform
+pnpm install
+pnpm dev
+```
+
+`DATA_SOURCE` defaults to `memory`, so `pnpm dev` (and `pnpm build && pnpm start`) render every page against the in-process synthetic graph. The in-memory provider is never a silent production fallback: in production an unset or invalid `DATA_SOURCE` fails loud, and `DATA_SOURCE=local`/`neon` require `DATABASE_URL`. The production deployment runs `DATA_SOURCE=local` (synthetic dataset in Postgres + pgvector); pointing it at Neon is the one-env swap above.
+
+`GET /api/health` is a lightweight liveness + DB-reachability probe used to mitigate Neon scale-to-zero and serverless cold starts. A Vercel cron pings it on `vercel.json`'s schedule (daily on the Hobby plan; tighten to `*/5 * * * *` on Pro, or point any external uptime pinger at `/api/health` for a ~5-minute warm cadence).
+
+
 ## Acceptance Criteria
 - Extend the Oracle data model using the Elephant Lexicon as the canonical schema.
 - Define and document canonical entities for Properties, Owners, Tenants, Businesses, Contractors, Permits, Addresses, Parcels, Projects, Reviews, Complaints, and Public Records.

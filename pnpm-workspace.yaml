@@ -1,0 +1,6 @@
+# pnpm 11+ reads build-script approvals here (moved out of package.json).
+# These native deps (esbuild for tsx/vitest, sharp for Next image optim) are
+# trusted and need their postinstall build scripts to run.
+allowBuilds:
+  esbuild: true
+  sharp: true
