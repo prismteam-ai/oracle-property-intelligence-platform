@@ -1,0 +1,34 @@
+name: oracle-property-intelligence
+description: >-
+  Property intelligence platform agent for the Oracle open-data graph (Lee County
+  appraisal, permits, Sunbiz, BBB) on the Elephant query-db lexicon. Answers
+  natural-language property/tenant/business/contractor questions through a hybrid
+  pgvector + full-text RAG layer with source-backed citations and provenance, and
+  exposes deep-linkable exploration views.
+version: 0.1.0
+author:
+  name: Oracle Property Intelligence Platform
+license: MIT
+keywords:
+  - elephant
+  - query-db
+  - rag
+  - pgvector
+  - property-intelligence
+  - lee-county
+agents: agents/
+skills: .claude/skills/
+mcpServers:
+  elephant:
+    command: npx
+    args:
+      - "-y"
+      - "@elephant-xyz/mcp@1.7.0"
+runtime:
+  entrypoint: pnpm dev
+  dataSourceSwap:
+    env: DATA_SOURCE
+    values:
+      memory: DB-free synthetic graph (default; no Postgres or credentials)
+      local: synthetic dataset in local Postgres 16 + pgvector
+      neon: gated @elephant-xyz/query-db on Neon (set DATABASE_URL)

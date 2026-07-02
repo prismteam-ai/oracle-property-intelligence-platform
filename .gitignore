@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+
+# Next.js build output
+.next/
+out/
+build/
+dist/
+
+# Production
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment / secrets (server-only DATABASE_URL etc. must never be committed)
+.env
+.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Local data (synthetic seed artifacts, local pgvector volumes, embeddings cache)
+.data/
+*.local.sqlite
+drizzle/.cache/
+
+# Drizzle generated migration journal scratch (keep committed migrations, ignore local meta cache)
+# (drizzle/ migrations are tracked; only ignore transient artifacts here)
+
+# Agent/skill working dir — local-only kit pieces, never committed
+.claude/
+
+# Vercel
+.vercel
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+*.pem
+.idea/
+.vscode/
+coverage/
+
+# Playwright (e2e) artifacts
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/blob-report/
+.env*

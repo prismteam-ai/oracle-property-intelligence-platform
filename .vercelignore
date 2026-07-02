@@ -1,0 +1,11 @@
+.data/
+.next/
+node_modules/
+.git/
+test-results/
+playwright-report/
+e2e/
+tests/
+*.log
+*.tsbuildinfo
+.vercel/
