@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tokens extracted from elephant.xyz production CSS — see design-system.md */
+:root {
+  --background: 215 45% 8%; /* deep navy #0e1628 */
+  --foreground: 42 40% 78%; /* warm cream #e8d8b0 */
+  --card: 215 38% 14%;
+  --card-foreground: 42 40% 78%;
+  --popover: 215 38% 14%;
+  --popover-foreground: 42 40% 78%;
+  --primary: 42 68% 56%; /* gold #d4a843 */
+  --primary-foreground: 215 45% 8%;
+  --secondary: 215 30% 20%; /* navy panel #1a2540 */
+  --secondary-foreground: 42 40% 78%;
+  --muted: 215 30% 18%;
+  --muted-foreground: 210 20% 55%; /* steel blue-gray #7a8ca5 */
+  --accent: 42 50% 70%; /* gold tint */
+  --accent-foreground: 215 45% 8%;
+  --destructive: 0 64% 55%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 215 30% 25%; /* navy border #1e2d4a */
+  --input: 215 30% 25%;
+  --ring: 42 68% 56%;
+  --radius: 0.75rem;
+  --ink-panel: 215 45% 6%; /* darker navy */
+  --eyebrow-on-paper: 42 60% 40%; /* darkened gold for AA contrast */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold tracking-[-0.02em];
+  }
+}
+
+@layer utilities {
+  .eyebrow {
+    @apply font-display text-xs uppercase tracking-[0.18em];
+  }
+  .eyebrow-light {
+    color: hsl(var(--primary));
+  }
+  .eyebrow-dark {
+    color: hsl(var(--eyebrow-on-paper));
+  }
+  .nums {
+    @apply tabular-nums;
+  }
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .bento-span-2 {
+    grid-column: span 2;
+  }
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #d4a843, #e8c468);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .workbench-shell {
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 264px minmax(0, 1fr);
+  }
+
+  .workbench-rail {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-right: 1px solid hsl(var(--border) / 0.9);
+    background: linear-gradient(180deg, hsl(var(--ink-panel)), hsl(var(--card)));
+    padding: 1rem;
+  }
+
+  .workbench-brand-wrap {
+    border-bottom: 1px solid hsl(var(--border) / 0.7);
+    padding-bottom: 1rem;
+  }
+
+  .workbench-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .workbench-brand-mark {
+    height: 2.25rem;
+    width: 0.375rem;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--accent)));
+  }
+
+  .workbench-nav-link {
+    display: block;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    color: hsl(var(--muted-foreground));
+    transition:
+      border-color 120ms ease,
+      background-color 120ms ease,
+      color 120ms ease;
+  }
+
+  .workbench-nav-link:hover {
+    border-color: hsl(var(--border));
+    background: hsl(var(--secondary) / 0.6);
+    color: hsl(var(--foreground));
+  }
+
+  .workbench-nav-link-active {
+    border-color: hsl(var(--primary) / 0.6);
+    background: hsl(var(--secondary) / 0.85);
+    color: hsl(var(--foreground));
+  }
+
+  .workbench-rail-card {
+    border-radius: 0.5rem;
+    border: 1px solid hsl(var(--border) / 0.7);
+    background: hsl(var(--card) / 0.75);
+    padding: 0.875rem;
+  }
+
+  .workbench-main {
+    display: grid;
+    grid-template-rows: 64px minmax(0, 1fr);
+    min-width: 0;
+  }
+
+  .workbench-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid hsl(var(--border) / 0.9);
+    background: hsl(var(--background));
+    padding: 0 1.5rem;
+  }
+
+  .workbench-content {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .workbench-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .workbench-rail {
+    border-right: 0;
+    border-bottom: 1px solid hsl(var(--border) / 0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
